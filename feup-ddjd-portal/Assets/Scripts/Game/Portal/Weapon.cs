@@ -6,8 +6,7 @@ public class Weapon : MonoBehaviour
 {
     public float offset;
 
-    public GameObject projectileRight;
-    public GameObject projectileLeft;
+    public GameObject projectileRight, projectileLeft;
     
     //public GameObject shotEffect;
     public Transform shotPoint;
