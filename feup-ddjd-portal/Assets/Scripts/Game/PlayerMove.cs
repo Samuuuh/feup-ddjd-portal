@@ -40,11 +40,12 @@ public class PlayerMove : MonoBehaviour {
         if (Input.GetKey(KeyCode.D))
         {   
             transform.eulerAngles = new Vector2(0, 0);
-            rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
+            if  (rb.velocity.x < moveSpeed)  rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
         }
         else if (Input.GetKey(KeyCode.A)) {
             transform.eulerAngles = new Vector2(0, 180);
-            rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
+
+            if  (rb.velocity.x > -moveSpeed)  rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
         }
         else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D)) rb.velocity = new Vector2(0, rb.velocity.y);
         
@@ -52,9 +53,6 @@ public class PlayerMove : MonoBehaviour {
         if (rb.velocity.y < -21f) {
             rb.velocity = new Vector2(rb.velocity.x, -21);
         }
-        //if (rb.velocity.y < -21f) {
-        //    rb.velocity.y = -21;
-        //}
 }
 
     void Dead() {

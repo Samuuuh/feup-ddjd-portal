@@ -13,27 +13,26 @@ public class Portal : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D other) {
+        Vector2 newVelocity, newPosition;
+        
         if(other.gameObject.tag == "Player") {
-            Rigidbody2D tempRigid = other.gameObject.GetComponent<Rigidbody2D>();
+            Rigidbody2D rb = other.gameObject.GetComponent<Rigidbody2D>();
 
             Transform destination;
             float displacementPortal; 
-            Vector2 newVelocity = new Vector2(0, 0);
-            Vector2 newPosition = new Vector2(0, 0);
-
             if (isOrange) {
                 GameObject bluePortal = GameObject.FindGameObjectWithTag("Blue Portal");
 
                 destination = bluePortal.GetComponent<Transform>();
                 displacementPortal = bluePortal.GetComponent<Portal>().displacement;
                 if (bluePortal.GetComponent<Portal>().isVertical) {
-                     newPosition = new Vector2(destination.position.x - displacementPortal, destination.position.y);
-                    newVelocity = new Vector2(100, 0);
+                    newPosition = new Vector2(destination.position.x - displacementPortal, destination.position.y);
+                    newVelocity = new Vector2(Mathf.Abs(rb.velocity.y), 0);
                     
                 } else {
                     newPosition = new Vector2(destination.position.x, destination.position.y - displacementPortal);
                      if (bluePortal.GetComponent<Portal>().displacement < -1f) {
-                        newVelocity = new Vector2(0, Mathf.Abs(tempRigid.velocity.y*1.15f));
+                        newVelocity = new Vector2(0, Mathf.Abs(rb.velocity.y*1.15f));
                     }
                 }
            }  else {
@@ -44,25 +43,19 @@ public class Portal : MonoBehaviour {
 
                 if (orangePortal.GetComponent<Portal>().isVertical) {
                     newPosition = new Vector2(destination.position.x  - displacementPortal, destination.position.y);
-                    newVelocity = new Vector2(100, 0);
+                    newVelocity = new Vector2(Mathf.Abs(rb.velocity.y), 0);
+
                 } else {
                     newPosition = new Vector2(destination.position.x, destination.position.y  - displacementPortal);
-
                     if (orangePortal.GetComponent<Portal>().displacement < -1f) {
-                        newVelocity = new Vector2(0, Mathf.Abs(tempRigid.velocity.y*1.15f));
+                        newVelocity = new Vector2(0, Mathf.Abs(rb.velocity.y*1.15f));
                     }
                 }
             }
 
             if (Vector2.Distance(transform.position, other.transform.position) > distance) {
                 other.transform.position = newPosition;
-
-                if (newVelocity.y != 0) {
-                    tempRigid.velocity = newVelocity;
-                }
-                if (newVelocity.x != 0) {
-                    tempRigid.velocity = newVelocity;
-                }
+                rb.velocity = newVelocity;
             }
         }
     }
