@@ -43,13 +43,18 @@ public class DoorTrigger : MonoBehaviour
        
     }
 
-    void OnTriggerEnter2D(Collider2D col){
-        isPressed = true;
-    }
+    // void OnTriggerEnter2D(Collider2D col){
+    //     isPressed = true;
+    // }
 
     void OnTriggerExit2D(Collider2D col){
         isPressed = false;
     }
+
+    void OnTriggerStay2D(Collider2D col){
+        isPressed = true;
+    }
+
 
 
     
