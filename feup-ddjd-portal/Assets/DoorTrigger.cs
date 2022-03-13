@@ -8,42 +8,51 @@ public class DoorTrigger : MonoBehaviour
     [SerializeField]
     GameObject door;
 
-    // bool isOpened = false;
+    bool isPressed = false;
 
     //movement speed in units per second
     private float movementSpeed = 0.5f;
     private float baseYAxis;
+    private Vector3 basePosition;
 
     
 
     // Start is called before the first frame update
     void Start(){
         baseYAxis = door.transform.position.y;
+        basePosition = door.transform.position;
     }
 
     // Update is called once per frame
     void Update(){
-        if (door.transform.position.y > baseYAxis){
 
-            //update the position
-            door.transform.position -= new Vector3(0, movementSpeed * Time.deltaTime, 0);
+        if(isPressed && door.transform.position.y < baseYAxis + 2.0){
+            if(door.transform.position.y < baseYAxis + 2.0){
+             door.transform.position += new Vector3(0, 2*movementSpeed * Time.deltaTime, 0);
+            }
         }
-        // if (door.transform.position.y <= baseYAxis + 2){
-        //     isOpened = false;
-        // }
+        else if (!isPressed){
+
+            if(door.transform.position.y - movementSpeed * Time.deltaTime >= baseYAxis)
+                //update the position
+                door.transform.position -= new Vector3(0, movementSpeed * Time.deltaTime, 0);
+            else{
+                door.transform.position = basePosition;
+            }
+        }
+       
     }
 
     void OnTriggerEnter2D(Collider2D col){
-
-        // if(!isOpened ){
-        //     door.transform.position += new Vector3(0,baseYAxis + 2,0); // Change y value later
-        //     isOpened = true;
-        // }
-
-        if(door.transform.position.y >= baseYAxis && door.transform.position.y < baseYAxis + 2.0){
-             door.transform.position += new Vector3(0, 2*movementSpeed * Time.deltaTime, 0);
-        }
-       
-        
+        isPressed = true;
     }
+
+    void OnTriggerExit2D(Collider2D col){
+        isPressed = false;
+    }
+
+
+    
+
+    
 }
