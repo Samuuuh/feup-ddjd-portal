@@ -9,6 +9,7 @@ TagManager:
   - SurfaceVer
   - Blue Portal
   - Orange Portal
+  - Portal Gun
   layers:
   - Default
   - TransparentFX
