@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6037220037329640950}
   - component: {fileID: 3477976497570982291}
   - component: {fileID: 74505448735002803}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: OrangePortal
   m_TagString: Orange Portal
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 3759339143452895409}
   - component: {fileID: 5655458923962308984}
   - component: {fileID: 472733345647899321}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4914,7 +4914,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1757242426123850511}
   - component: {fileID: 1067447524431978945}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4996,7 +4996,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6739784133520992360}
   - component: {fileID: 4901058648466943465}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Top Half
   m_TagString: Untagged
   m_Icon: {fileID: 0}

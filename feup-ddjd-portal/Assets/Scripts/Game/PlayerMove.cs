@@ -37,13 +37,19 @@ public class PlayerMove : MonoBehaviour {
         if (!jumpAllowed && rb.velocity.y < -0.001f) {
             GetComponent<Rigidbody2D>().gravityScale = base_gravity_scale * fall_multiplier;
         }
-        if (Input.GetKey(KeyCode.D))
-        {   
-            transform.eulerAngles = new Vector2(0, 0);
+        if (Input.GetKey(KeyCode.D)) {   
+             if(!facingRight) {
+                 transform.eulerAngles = new Vector2(0, 0);
+                FlipPlayer();
+            }
+
             if  (rb.velocity.x < moveSpeed)  rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
         }
         else if (Input.GetKey(KeyCode.A)) {
-            transform.eulerAngles = new Vector2(0, 180);
+            if(facingRight) {
+                 transform.eulerAngles = new Vector2(0, 180);
+                FlipPlayer();
+            }
 
             if  (rb.velocity.x > -moveSpeed)  rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
         }
@@ -74,9 +80,13 @@ public class PlayerMove : MonoBehaviour {
         facingRight = !facingRight;
 
         Vector2 localScale = gameObject.transform.localScale;
-
         localScale.x *= -1;
-
         transform.localScale = localScale;
+
+        foreach (Transform child in transform){
+                Vector3 childScale = transform.localScale;
+                childScale.x  *= -1;
+                transform.localScale = childScale;
+        }
     }
 }

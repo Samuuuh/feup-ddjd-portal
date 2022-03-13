@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8324815897113095024}
   - component: {fileID: 2897568242742680896}
   - component: {fileID: 1322444053154983290}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: BluePortal
   m_TagString: Blue Portal
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1372758466548709827}
   - component: {fileID: 3306299280304370285}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Top Half
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 4518023918060342838}
   - component: {fileID: 2836656964005602366}
   - component: {fileID: 7409485122116792484}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4996,7 +4996,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5424779897105287949}
   - component: {fileID: 2474631710943841372}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
