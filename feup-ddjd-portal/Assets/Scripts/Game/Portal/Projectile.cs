@@ -24,17 +24,21 @@ public class Projectile : MonoBehaviour {
             if (hitInfo.collider.tag == "SurfaceVer") {
                 if (endPosition.x < 0f) {
                     endPosition.x = -1.5f;
+                    CreatePortal(Quaternion.Euler(0f, 0f, 180f), endPosition.x, "vertical");
                 } else {
                     endPosition.x = 1.5f;
+                    CreatePortal(Quaternion.Euler(0f, 0f, 0f), endPosition.x, "vertical");
                 }
-                CreatePortal(Quaternion.Euler(0f, 0f, 0f), endPosition.x, "vertical");
             } else if (hitInfo.collider.tag == "SurfaceHor") {
                  if (endPosition.y < 0f) {
                     endPosition.y = -1.5f;
+                    CreatePortal(Quaternion.Euler(0f, 0f, -90f), endPosition.y, "horizontal");
                 } else {
                     endPosition.y = 1.5f;
+                    CreatePortal(Quaternion.Euler(0f, 0f, 90f), endPosition.y, "horizontal");
                 }
-                CreatePortal(Quaternion.Euler(0f, 0f, 90f), endPosition.y, "horizontal");
+            } else {
+                Destroy(gameObject);
             }
         }
         transform.Translate(Vector2.right * speed * Time.deltaTime);

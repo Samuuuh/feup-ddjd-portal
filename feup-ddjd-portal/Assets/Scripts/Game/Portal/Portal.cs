@@ -50,11 +50,13 @@ public class Portal : MonoBehaviour {
                 displacementPortal = bluePortal.GetComponent<Portal>().displacement;
                 if (bluePortal.GetComponent<Portal>().isVertical) {
                     newPosition = new Vector2(destination.position.x - displacementPortal, destination.position.y);
-                    newVelocity = new Vector2(Mathf.Abs(rb.velocity.y), 0);
+                    newVelocity = new Vector2(-Mathf.Abs(rb.velocity.y) * displacementPortal/1.5f, 0);
                 } else {
                     newPosition = new Vector2(destination.position.x, destination.position.y - displacementPortal);
                      if (bluePortal.GetComponent<Portal>().displacement < 0f) {
                         newVelocity = new Vector2(0, Mathf.Abs(rb.velocity.y*1.15f));
+                    } else {
+                        newVelocity = new Vector2(0, -Mathf.Abs(rb.velocity.y));
                     }
                 }
            }  else {
@@ -66,12 +68,14 @@ public class Portal : MonoBehaviour {
 
                 if (orangePortal.GetComponent<Portal>().isVertical) {
                     newPosition = new Vector2(destination.position.x  - displacementPortal, destination.position.y);
-                    newVelocity = new Vector2(Mathf.Abs(rb.velocity.y), 0);
+                    newVelocity = new Vector2(-Mathf.Abs(rb.velocity.y) * displacementPortal/1.5f, 0);
 
                 } else {
                     newPosition = new Vector2(destination.position.x, destination.position.y  - displacementPortal);
                     if (orangePortal.GetComponent<Portal>().displacement < 0f) {
                         newVelocity = new Vector2(0, Mathf.Abs(rb.velocity.y*1.15f));
+                    } else {
+                        newVelocity = new Vector2(0, -Mathf.Abs(rb.velocity.y));
                     }
                 }
             }
