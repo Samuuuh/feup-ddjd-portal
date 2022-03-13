@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOrange: 1
-  speed: 17
+  speed: 30
   whatIsSolid:
     serializedVersion: 2
     m_Bits: 8

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8770072620880171362}
   - component: {fileID: 8770072620880171372}
   m_Layer: 3
-  m_Name: PortalSurfaceHor
+  m_Name: Horizontal
   m_TagString: SurfaceHor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

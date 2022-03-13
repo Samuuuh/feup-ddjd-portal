@@ -13,13 +13,15 @@ public class Portal : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        Vector2 newVelocity, newPosition;
-        
         if(other.gameObject.tag == "Player") {
             Rigidbody2D rb = other.gameObject.GetComponent<Rigidbody2D>();
 
             Transform destination;
             float displacementPortal; 
+
+             Vector2 newPosition = new Vector2(0, 0);
+            Vector2 newVelocity = new Vector2(0, 0);
+
             if (isOrange) {
                 GameObject bluePortal = GameObject.FindGameObjectWithTag("Blue Portal");
 
@@ -55,7 +57,10 @@ public class Portal : MonoBehaviour {
 
             if (Vector2.Distance(transform.position, other.transform.position) > distance) {
                 other.transform.position = newPosition;
-                rb.velocity = newVelocity;
+
+                if ( newVelocity.y != 0 ||  newVelocity.x != 0) {
+                    rb.velocity = newVelocity;
+                }
             }
         }
     }
