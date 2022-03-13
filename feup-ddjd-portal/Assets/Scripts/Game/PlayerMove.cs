@@ -26,6 +26,7 @@ public class PlayerMove : MonoBehaviour {
 
     void Update() {
         Dead();
+
         if (Input.GetKeyDown(KeyCode.Space) && jumpAllowed) {
             rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
             jumpAllowed = false;
@@ -45,7 +46,8 @@ public class PlayerMove : MonoBehaviour {
             transform.eulerAngles = new Vector2(0, 180);
             rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
         }
-        else rb.velocity = new Vector2(0, rb.velocity.y);
+        else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D)) rb.velocity = new Vector2(0, rb.velocity.y);
+        
 
         if (rb.velocity.y < -21f) {
             rb.velocity = new Vector2(rb.velocity.x, -21);
