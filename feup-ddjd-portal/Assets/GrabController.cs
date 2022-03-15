@@ -8,12 +8,6 @@ public class GrabController : MonoBehaviour{
     public Transform boxHolder;
     public float rayDist;
 
-    // public float pickUpRange = 5;
-    // private GameObject heldObj;
-    // public Transform holdParent;
-    // public float moveForce = 250;
-
-
     // // Update is called once per frame
     void Update(){
 
