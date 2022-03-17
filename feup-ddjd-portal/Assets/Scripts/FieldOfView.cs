@@ -59,8 +59,14 @@ public class FieldOfView : MonoBehaviour{
         int triangleIndex = 0;
         for(int i = 0; i <= rayCount; i++){
             Vector3 vertex;
-            RaycastHit2D raycastHit2D = Physics2D.Raycast(origin,GetVectorFromAngle(angle),viewDistance);
+            // Physics2D.queriesHitTriggers = true;
+            // LayerMask mask = LayerMask.GetMask("Default");
+            RaycastHit2D[] raycastHit2D = Physics2D.RaycastAll(origin,GetVectorFromAngle(angle),viewDistance);
+            
+
             vertex = origin + GetVectorFromAngle(angle) * viewDistance;
+
+            
             // if(raycastHit2D.collider == null){
             //     // no hit
             //     vertex = origin + GetVectorFromAngle(angle) * viewDistance;
@@ -72,6 +78,10 @@ public class FieldOfView : MonoBehaviour{
             // }
 
             vertices[vertexIndex] = vertex;
+
+            if(ContainsObjectWithName(raycastHit2D,"Collider")){
+                Debug.Log("PLAYER FOUND, EXTERMINATING");
+            }
 
             if(i > 0){
                 triangles[triangleIndex] = 0;
@@ -106,4 +116,15 @@ public class FieldOfView : MonoBehaviour{
     // private void SetDirection(Vector3 direction){
 
     // }
+
+    private bool ContainsObjectWithName(RaycastHit2D[] raycastHit2D, string name){
+
+        foreach (RaycastHit2D ray in raycastHit2D){
+            Debug.Log(ray.collider.name);
+            if (ray.collider.name == name) return true;
+        }
+
+        return false;
+
+    }
 }
