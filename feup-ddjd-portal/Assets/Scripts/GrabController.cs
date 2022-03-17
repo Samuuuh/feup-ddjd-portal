@@ -10,50 +10,55 @@ public class GrabController : MonoBehaviour{
 
 
     private bool holding = false;
+    private GameObject cube;
 
     // // Update is called once per frame
     void Update(){
 
 
-        RaycastHit2D grabCheckRight = Physics2D.Raycast(grabDetect.position, Vector2.right * transform.localScale, rayDist);
-        RaycastHit2D grabCheckLeft = Physics2D.Raycast(grabDetect.position, Vector2.left * transform.localScale, rayDist);
+        RaycastHit2D[] grabCheckRight = Physics2D.RaycastAll(grabDetect.position, Vector2.right * transform.localScale, rayDist);
+        RaycastHit2D[] grabCheckLeft = Physics2D.RaycastAll(grabDetect.position, Vector2.left * transform.localScale, rayDist);
 
 
-        if(grabCheckRight.collider != null){
-            ToggleGrab(grabCheckRight);
-        }
-        else if(grabCheckLeft.collider != null){
-            ToggleGrab(grabCheckLeft);
+        if(Input.GetKeyDown(KeyCode.E)){
+            if(!holding){
+                foreach (RaycastHit2D i in grabCheckRight){
+                    if(i.collider.tag == "Cube"){
+                        GrabCube(i);
+                        break;
+                    }
+                }
+
+                foreach (RaycastHit2D i in grabCheckLeft){
+                    if(i.collider.tag == "Cube"){
+                        GrabCube(i);
+                        break;
+                    }
+                }
+            }
+            else {
+                DropCube();
+            }   
         }
 
     }
 
+    private void GrabCube(RaycastHit2D grabCheck){
 
-    private void ToggleGrab(RaycastHit2D grabCheck){
+        grabCheck.collider.gameObject.transform.parent = boxHolder;
+        grabCheck.collider.gameObject.transform.position = boxHolder.position;
+        grabCheck.collider.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+        holding = true;
 
-        if(grabCheck.collider.tag == "Cube" && Input.GetKeyDown(KeyCode.E)){
+        cube = grabCheck.collider.gameObject;
 
-            if(!holding){
+         
+    }
 
-                Debug.Log("Grabbing");
-
-                grabCheck.collider.gameObject.transform.parent = boxHolder;
-                grabCheck.collider.gameObject.transform.position = boxHolder.position;
-                grabCheck.collider.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
-                holding = true;
-
-            }else{
-                Debug.Log("Releasing");
-                grabCheck.collider.gameObject.transform.parent = null;
-                grabCheck.collider.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
-                holding = false;
-            }
-                    
-        }
-        // else if(grabCheck.collider.tag == "CompanionCube" && holding){
-        //     grabCheck.collider.gameObject.transform.parent = boxHolder;
-        //     grabCheck.collider.gameObject.transform.position = boxHolder.position;
-        // }
+    private void DropCube(){
+        cube.transform.parent = null;
+        cube.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+        holding = false;
     }
 
 }
