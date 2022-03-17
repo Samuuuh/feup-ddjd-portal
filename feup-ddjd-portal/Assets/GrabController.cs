@@ -26,10 +26,19 @@ public class GrabController : MonoBehaviour{
             ToggleGrab(grabCheckLeft);
         }
 
+
+        
+
+
+        
+
     }
 
 
     private void ToggleGrab(RaycastHit2D grabCheck){
+
+
+        
 
         if(grabCheck.collider.tag == "Cube" && Input.GetKeyDown(KeyCode.E)){
 
@@ -37,15 +46,22 @@ public class GrabController : MonoBehaviour{
                 grabCheck.collider.gameObject.transform.parent = boxHolder;
                 grabCheck.collider.gameObject.transform.position = boxHolder.position;
                 grabCheck.collider.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+                // grabCheck.collider.gameObject.GetComponent<Rigidbody2D>().gravityScale = 0f;
+                // grabCheck.collider.gameObject.GetComponent<Rigidbody2D>().mass = 0f;
+                
                 holding = true;
             }else{
                 grabCheck.collider.gameObject.transform.parent = null;
-                // grabCheck.collider.gameObject.transform.parent = GameObject.Find("Player").transform;
+                // grabCheck.collider.gameObject.GetComponent<Rigidbody2D>().gravityScale = 1f;
                 grabCheck.collider.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
                 holding = false;
             }
                     
         }
+        // else if(grabCheck.collider.tag == "Cube" && holding){
+        //     grabCheck.collider.gameObject.transform.parent = boxHolder;
+        //     grabCheck.collider.gameObject.transform.position = boxHolder.position;
+        // }
     }
 
 }
