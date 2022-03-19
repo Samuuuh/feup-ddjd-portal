@@ -19,7 +19,7 @@ public class Portal : MonoBehaviour {
             timeDisabled = 0.3f;
         }
 
-        if ( isActive) {
+        if (!isActive) {
             timeDisabled -= Time.deltaTime;
         }
     }
