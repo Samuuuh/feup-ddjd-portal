@@ -15,8 +15,8 @@ public class DoorTrigger : MonoBehaviour
     private float baseYAxis;
     private Vector3 basePosition;
 
+    public Animator buttonAnimator;
     
-
     // Start is called before the first frame update
     void Start(){
         baseYAxis = door.transform.position.y;
@@ -25,39 +25,32 @@ public class DoorTrigger : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
-
-        if(isPressed && door.transform.position.y < baseYAxis + 2.0){
-            if(door.transform.position.y < baseYAxis + 2.0){
-             door.transform.position += new Vector3(0, 2*movementSpeed * Time.deltaTime, 0);
+        if (isPressed && door.transform.position.y < baseYAxis + 2.0){
+            if(door.transform.position.y < baseYAxis + 2.0) {
+                door.transform.position += new Vector3(0, 2*movementSpeed * Time.deltaTime, 0);
             }
         }
         else if (!isPressed){
-
             if(door.transform.position.y - movementSpeed * Time.deltaTime >= baseYAxis)
-                //update the position
                 door.transform.position -= new Vector3(0, movementSpeed * Time.deltaTime, 0);
-            else{
+            else {
                 door.transform.position = basePosition;
             }
         }
        
     }
 
-    // void OnTriggerEnter2D(Collider2D col){
-    //     isPressed = true;
-    // }
-
     void OnTriggerExit2D(Collider2D col){
-        isPressed = false;
+        if (isPressed) {
+            isPressed = false;
+            buttonAnimator.SetBool("isPressed", false);
+        }
     }
 
-    void OnTriggerStay2D(Collider2D col){
-        isPressed = true;
+    void OnTriggerStay2D(Collider2D col) {
+        if (!isPressed) {
+            isPressed = true;
+            buttonAnimator.SetBool("isPressed", true);
+        }
     }
-
-
-
-    
-
-    
 }
