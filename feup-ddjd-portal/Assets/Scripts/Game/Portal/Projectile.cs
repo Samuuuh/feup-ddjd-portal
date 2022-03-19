@@ -20,7 +20,7 @@ public class Projectile : MonoBehaviour {
 
         if (hitInfo.collider != null) {
             endPosition = transform.position - startPosition;
-
+            Debug.Log(hitInfo.collider.tag);
             if (hitInfo.collider.tag == "SurfaceVer") {
                 if (endPosition.x < 0f) {
                     endPosition.x = -1.5f;

@@ -99,5 +99,5 @@ MonoBehaviour:
   speed: 30
   whatIsSolid:
     serializedVersion: 2
-    m_Bits: 53
+    m_Bits: 49
   portalEffect: {fileID: 1385146368211629902, guid: 2ad581dbd5cd9af4682f5f12c5c8fbee, type: 3}
