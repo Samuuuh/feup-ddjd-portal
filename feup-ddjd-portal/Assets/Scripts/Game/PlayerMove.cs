@@ -81,7 +81,7 @@ public class PlayerMove : MonoBehaviour {
 
 
     void OnTriggerEnter2D(Collider2D other)  {
-        if ((other.gameObject.CompareTag("Ground") && !jumpAllowed) || (other.gameObject.CompareTag("SurfaceVer") && !jumpAllowed) || (other.gameObject.CompareTag("SurfaceHor") && !jumpAllowed)) {
+        if ((other.gameObject.CompareTag("Cube") && !jumpAllowed) || (other.gameObject.CompareTag("Ground") && !jumpAllowed) || (other.gameObject.CompareTag("SurfaceVer") && !jumpAllowed) || (other.gameObject.CompareTag("SurfaceHor") && !jumpAllowed)) {
             animator.SetFloat("Jump", 0.0f);
 
             GetComponent<Rigidbody2D>().gravityScale = base_gravity_scale;
@@ -91,7 +91,7 @@ public class PlayerMove : MonoBehaviour {
 
     // TODO: What to do with Double Jump? 
     void OnTriggerStay2D(Collider2D other){
-        if ((other.gameObject.CompareTag("Ground") && !jumpAllowed) || (other.gameObject.CompareTag("SurfaceVer") && !jumpAllowed) || (other.gameObject.CompareTag("SurfaceHor") && !jumpAllowed)) {
+        if ((other.gameObject.CompareTag("Cube") && !jumpAllowed) || (other.gameObject.CompareTag("Ground") && !jumpAllowed) || (other.gameObject.CompareTag("SurfaceVer") && !jumpAllowed) || (other.gameObject.CompareTag("SurfaceHor") && !jumpAllowed)) {
             animator.SetFloat("Jump", 0.0f);
 
             GetComponent<Rigidbody2D>().gravityScale = base_gravity_scale;
@@ -100,7 +100,7 @@ public class PlayerMove : MonoBehaviour {
     }
 
     void OnTriggerExit2D(Collider2D other)  {
-        if ((other.gameObject.CompareTag("Ground") && jumpAllowed) || (other.gameObject.CompareTag("SurfaceVer") && jumpAllowed) || (other.gameObject.CompareTag("SurfaceHor") && jumpAllowed)) {
+        if ((other.gameObject.CompareTag("Cube") && jumpAllowed) || (other.gameObject.CompareTag("Ground") && jumpAllowed) || (other.gameObject.CompareTag("SurfaceVer") && jumpAllowed) || (other.gameObject.CompareTag("SurfaceHor") && jumpAllowed)) {
             animator.SetFloat("Jump", 1.0f);
 
             GetComponent<Rigidbody2D>().gravityScale = base_gravity_scale;

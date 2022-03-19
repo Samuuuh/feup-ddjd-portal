@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FieldOfView : MonoBehaviour{
-   
-    
-
+public class FieldOfView : MonoBehaviour {
     // private void Start(){
     //     Mesh mesh = new Mesh();
     //     GetComponent<MeshFilter>().mesh = mesh;

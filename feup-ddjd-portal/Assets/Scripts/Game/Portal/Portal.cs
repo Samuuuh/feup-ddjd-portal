@@ -9,24 +9,24 @@ public class Portal : MonoBehaviour {
     public bool isVertical;
     public float displacement;
 
-    public bool enabled = true;
+    public bool isActive = true;
     private float timeDisabled = 0.3f;
     
     void Update() {
         if (timeDisabled < 0) {
             GetComponent<Collider2D>().enabled = true;
-            enabled = true;
+            isActive = true;
             timeDisabled = 0.3f;
         }
 
-        if (!enabled) {
+        if ( isActive) {
             timeDisabled -= Time.deltaTime;
         }
     }
     
     public void DisablePortal() {
         GetComponent<Collider2D>().enabled = false;
-        enabled = false;
+        isActive = false;
     }
 
     void OnTriggerEnter2D(Collider2D other) {
