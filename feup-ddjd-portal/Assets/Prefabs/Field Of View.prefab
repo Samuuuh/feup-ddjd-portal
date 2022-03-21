@@ -45,7 +45,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13d6925e060198cf8bb0fe0d091f115a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  whatIsSolid:
+    serializedVersion: 2
+    m_Bits: 0
   triangleCount: 25
+  viewDistance: 5
+  rotateSpeed: 1
 --- !u!33 &3799172309591817898
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -73,7 +78,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 6a0f5d22af2cd2e418c6d7b0b38f29d4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

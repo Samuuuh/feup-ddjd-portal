@@ -9,9 +9,9 @@ public class FieldOfView : MonoBehaviour {
     
     
     public float viewDistance = 5f; 
-    public float initialAngle = -45f;
+    private float initialAngle;
     public float rotateSpeed = 1f;
-    private float maxAngle = -90;
+    public float maxAngle = -90;
     private float minAngle;
     private bool goingRight = true; 
 
@@ -23,7 +23,14 @@ public class FieldOfView : MonoBehaviour {
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
 
-        minAngle = maxAngle + 90;
+        // Color color = new Color(255f,255f,0f,0f);
+        // color.a = 0;
+
+        // GetComponentInChildren<MeshRenderer>().material.color = color;
+
+
+        initialAngle = maxAngle + 45f;
+        minAngle = maxAngle + 90f;
     }
 
     void Update() {
