@@ -162,9 +162,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5085360705638230828}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48386dabe2307a6b1988f73b1be81437, type: 3}
+  m_Script: {fileID: 11500000, guid: 444ee770e843429c784b04dc120ad83b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3.5
-  distance: 1.5
-  groundDetection: {fileID: 5085360704680464549}
+  speed: 3
+  distance: 3
+  groundDetection: {fileID: 0}
