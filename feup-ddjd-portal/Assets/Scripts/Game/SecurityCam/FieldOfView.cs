@@ -47,17 +47,37 @@ public class FieldOfView : MonoBehaviour {
 
         int vertexIndex = 1;
         int triangleIndex = 0;
+        Vector3 vertex;
+
         for(int i = 0; i <= rayCount; i++) {
             RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, GetVectorFromAngle(angle), viewDistance, whatIsSolid);
 
+            LayerMask floor = LayerMask.GetMask("Default");
+
+            RaycastHit2D hitWall = Physics2D.Raycast(transform.position, GetVectorFromAngle(angle), viewDistance, floor);
+
+            
             if (hitInfo.collider != null) {
                 if (ContainsObjectWithName(hitInfo, "Player")) {
                     Debug.Log("PLAYER FOUND, EXTERMINATING");
                 }
             }
 
-            Vector3 vertex = relativePositionVertex + GetVectorFromAngle(angle) * viewDistance;
+            // Vector3 vertex = relativePositionVertex + GetVectorFromAngle(angle) * viewDistance;
+            // vertices[vertexIndex] = vertex;
+
+            if(hitWall.collider != null){
+                Debug.Log(hitWall.collider.name);
+                vertex = relativePositionVertex + GetVectorFromAngle(angle) * hitWall.distance;
+            }else{
+                vertex = relativePositionVertex + GetVectorFromAngle(angle) * viewDistance;
+            }
+
+            Debug.Log(vertex);
+            
+
             vertices[vertexIndex] = vertex;
+
 
             if (i > 0) {
                 triangles[triangleIndex] = 0;
