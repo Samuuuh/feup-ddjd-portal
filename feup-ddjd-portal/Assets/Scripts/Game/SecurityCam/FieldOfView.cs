@@ -3,40 +3,49 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FieldOfView : MonoBehaviour {
+
+    // Objects
     public LayerMask whatIsSolid;
     private Mesh mesh;
-    public int triangleCount = 25;
     
-    
-    public float viewDistance = 5f; 
-    private float initialAngle;
-    public float rotateSpeed = 1f;
+    // Angle
+    public float fov = 90f;
     public float maxAngle = -90;
+    private float initialAngle;
     private float minAngle;
     private bool goingRight = true; 
 
+    // Timer
+    public float initialTime = 2f;
+    private float currentTime;
 
-
+    // Other Setings
+    public float viewDistance = 5f; 
+    public float rotateSpeed = 5f;
+    public int triangleCount = 25;
 
 
     private void Start(){
+
+        // Initialize mesh material for the field of view
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
 
         // Color color = new Color(255f,255f,0f,0f);
         // color.a = 0;
-
         // GetComponentInChildren<MeshRenderer>().material.color = color;
 
+        // Câmera angle intialization
+        initialAngle = maxAngle + fov/2;
+        minAngle = maxAngle + fov;
 
-        initialAngle = maxAngle + 45f;
-        minAngle = maxAngle + 90f;
+        // Câmera Timer initialization
+        currentTime = initialTime;
     }
 
     void Update() {
         Vector3 relativePositionVertex = Vector3.zero;
         int rayCount = triangleCount;
-        float fov = 90f;
         float angle = initialAngle;
         float angleIncrease = fov/rayCount;
 
@@ -49,32 +58,28 @@ public class FieldOfView : MonoBehaviour {
         int triangleIndex = 0;
         Vector3 vertex;
 
+        bool foundPlayer = false;
+
+
+        // Draw triangles and ray cast from camera
         for(int i = 0; i <= rayCount; i++) {
-            RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, GetVectorFromAngle(angle), viewDistance, whatIsSolid);
 
             LayerMask floor = LayerMask.GetMask("Default");
 
+            RaycastHit2D hitPlayer = Physics2D.Raycast(transform.position, GetVectorFromAngle(angle), viewDistance, whatIsSolid);
             RaycastHit2D hitWall = Physics2D.Raycast(transform.position, GetVectorFromAngle(angle), viewDistance, floor);
 
             
-            if (hitInfo.collider != null) {
-                if (ContainsObjectWithName(hitInfo, "Player")) {
-                    Debug.Log("PLAYER FOUND, EXTERMINATING");
-                }
+            if (hitPlayer.collider != null) {
+                foundPlayer = true;
             }
 
-            // Vector3 vertex = relativePositionVertex + GetVectorFromAngle(angle) * viewDistance;
-            // vertices[vertexIndex] = vertex;
-
             if(hitWall.collider != null){
-                Debug.Log(hitWall.collider.name);
                 vertex = relativePositionVertex + GetVectorFromAngle(angle) * hitWall.distance;
             }else{
                 vertex = relativePositionVertex + GetVectorFromAngle(angle) * viewDistance;
             }
-
-            Debug.Log(vertex);
-            
+        
 
             vertices[vertexIndex] = vertex;
 
@@ -95,7 +100,15 @@ public class FieldOfView : MonoBehaviour {
         mesh.uv = uv;
         mesh.triangles = triangles;
 
+        // Rotate the câmera at a certain speed
         RotateAngle();
+
+        // Player being seen for a certain amount of time
+        if(foundPlayer){
+            Countdown();
+        }else{
+            currentTime = initialTime;
+        }
     }
 
 
@@ -104,30 +117,31 @@ public class FieldOfView : MonoBehaviour {
         return new Vector3(Mathf.Cos(angleRad),Mathf.Sin(angleRad));
     }
 
-    private bool ContainsObjectWithName(RaycastHit2D raycastHit2D, string name){
-        Debug.Log(raycastHit2D.collider.name);
-
-         if (raycastHit2D.collider.name == name) return true;
-        return false;
-    }
 
     private void RotateAngle(){
 
         if(goingRight){
-            if (initialAngle + rotateSpeed < minAngle) initialAngle += rotateSpeed;
+            if (initialAngle + rotateSpeed/10 < minAngle) initialAngle += rotateSpeed/10;
             else if(initialAngle + rotateSpeed >= minAngle){
                 initialAngle = minAngle;
                 goingRight = false;
             } 
         }
         else{
-            if (initialAngle - rotateSpeed > maxAngle) initialAngle -= rotateSpeed;
+            if (initialAngle - rotateSpeed/10 > maxAngle) initialAngle -= rotateSpeed/10;
             else if(initialAngle - rotateSpeed <= maxAngle){
                 initialAngle = maxAngle;
                 goingRight = true; 
             } 
         }
 
-        
     }
+
+    private void Countdown(){
+
+        Debug.Log(currentTime);
+        if(currentTime <= 0) Debug.Log("TIME'S UP, GAME LOSS");
+        else currentTime -= 1 * Time.deltaTime;
+
+    } 
 }
