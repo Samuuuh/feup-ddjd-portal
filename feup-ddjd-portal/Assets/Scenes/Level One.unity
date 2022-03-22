@@ -931,12 +931,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5085360705638230829, guid: 0de21234e72e94bac9f956369f7b73db, type: 3}
       propertyPath: groundDistance
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5085360705638230829, guid: 0de21234e72e94bac9f956369f7b73db, type: 3}
       propertyPath: groundDetection
       value: 
       objectReference: {fileID: 1075707762}
+    - target: {fileID: 5085360705638230830, guid: 0de21234e72e94bac9f956369f7b73db, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5085360705638230833, guid: 0de21234e72e94bac9f956369f7b73db, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -2510,11 +2514,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2473885974495333973, guid: c89221b66cb577f4ea1931006f253409, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -445.52
+      value: -447.17
       objectReference: {fileID: 0}
     - target: {fileID: 2473885974495333973, guid: c89221b66cb577f4ea1931006f253409, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -257.28
+      value: -251.58
       objectReference: {fileID: 0}
     - target: {fileID: 2473885974495333973, guid: c89221b66cb577f4ea1931006f253409, type: 3}
       propertyPath: m_LocalPosition.z
