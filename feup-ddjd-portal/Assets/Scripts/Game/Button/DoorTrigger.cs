@@ -45,7 +45,10 @@ public class DoorTrigger : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D col){
 
+
+
         if(elementsOnTop.Count == 1){
+            if (isPressed) isPressed = false;
             buttonAnimator.SetBool("isPressed", false);
         }
 
@@ -56,6 +59,7 @@ public class DoorTrigger : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col){
 
         if(elementsOnTop.Count == 0){
+            if (!isPressed) isPressed = true;
             buttonAnimator.SetBool("isPressed", true);
         }
 
