@@ -8,6 +8,9 @@ public class DoorTrigger : MonoBehaviour
     [SerializeField]
     GameObject door;
 
+    
+    private HashSet<GameObject> elementsOnTop = new HashSet<GameObject>();
+
     bool isPressed = false;
 
     //movement speed in units per second
@@ -41,16 +44,22 @@ public class DoorTrigger : MonoBehaviour
     }
 
     void OnTriggerExit2D(Collider2D col){
-        if (isPressed) {
-            isPressed = false;
+
+        if(elementsOnTop.Count == 1){
             buttonAnimator.SetBool("isPressed", false);
         }
+
+        elementsOnTop.Remove(col.gameObject);
+
     }
 
-    void OnTriggerStay2D(Collider2D col) {
-        if (!isPressed) {
-            isPressed = true;
+    void OnTriggerEnter2D(Collider2D col){
+
+        if(elementsOnTop.Count == 0){
             buttonAnimator.SetBool("isPressed", true);
         }
+
+        elementsOnTop.Add(col.gameObject);
     }
+
 }
