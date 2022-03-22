@@ -1193,7 +1193,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3799172309591817877, guid: 4418ae48c9744244b997b8eae2490cbc, type: 3}
       propertyPath: rotateSpeed
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3799172309591817877, guid: 4418ae48c9744244b997b8eae2490cbc, type: 3}
       propertyPath: viewDistance
