@@ -9,7 +9,7 @@ public class NextLevel: MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other) {
         if ((other.gameObject.tag == "Player")) {
             if (canExit) {
-                SceneManager.LoadScene("Game Over");
+                SceneManager.LoadScene("Finished");
             } else {
                 // Glados saying: "You're dumb. Go grab the exams, and after i let you leave."
             }
