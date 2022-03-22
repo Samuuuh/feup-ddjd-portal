@@ -17,36 +17,29 @@ public class FollowArea : MonoBehaviour
 
 
     void Update(){
-        // if(!foundPlayer) patrol.GetComponent<Patrol>().MoveAimlessly(movingRight);
-
+        
         if(!foundPlayer){
-            Debug.Log("Moving Aimlessly");
             Move();
-        }        
+        }else{
+            FollowPlayer();
+        }
     }
 
-    // Update is called once per frame
+    void FollowPlayer(){
+        direction = player.transform.position - patrol.transform.position;
 
-    void OnTriggerStay2D(Collider2D collider){
+        Debug.Log("Following Player");
 
-        if(foundPlayer && collider.name == "Player"){
-
-            direction = player.transform.position - patrol.transform.position;
-
-            Debug.Log("Following Player");
-
-            if(direction.x < 0){
-                // Move Left
-                movingRight = false;
-                Move();
-            }
-            else if (direction.x > 0){
-                // Move Right
-                movingRight = true;
-                Move();
-            }
+        if(direction.x < 0){
+            // Move Left
+            movingRight = false;
+            Move();
         }
-
+        else if (direction.x > 0){
+            // Move Right
+            movingRight = true;
+            Move();
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collider){
