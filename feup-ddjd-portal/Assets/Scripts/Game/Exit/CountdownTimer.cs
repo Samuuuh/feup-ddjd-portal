@@ -4,10 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class CountdownTimer : MonoBehaviour
-{
+public class CountdownTimer: MonoBehaviour {
     float currentTime = 0f;
-    float startingTime = 120f;
+    float startingTime = 10f;
     float minutes = 0f;
     float seconds = 0f;
     string m = "";
@@ -15,22 +14,18 @@ public class CountdownTimer : MonoBehaviour
 
     [SerializeField] Text countdownText;
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         currentTime = startingTime;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        currentTime -= 1 * Time.deltaTime;
+    void Update() {
+        currentTime -= Time.deltaTime;
 
-        if(currentTime <= 10)
-        {
+        if (currentTime <= 10) {
             countdownText.color = Color.red;
-        }        
-        if(currentTime <= 0)
-        {
+        }
+        if (currentTime <= 0) {
             currentTime = 0;
             SceneManager.LoadScene("Game Over");
         }
@@ -39,20 +34,18 @@ public class CountdownTimer : MonoBehaviour
         seconds = Mathf.RoundToInt(currentTime % 60);
 
         m = minutes.ToString();
-        if(minutes < 10){
+        if (minutes < 10) {
             m = "0" + minutes.ToString();
-        }
-        else {
+        } else {
             m = minutes.ToString();
         }
-        if(seconds < 10){
+        if (seconds < 10) {
             s = "0" + seconds.ToString();
-        }
-        else {
+        } else {
             s = seconds.ToString();
         }
 
         countdownText.text = m + ":" + s;
-        
+
     }
 }
