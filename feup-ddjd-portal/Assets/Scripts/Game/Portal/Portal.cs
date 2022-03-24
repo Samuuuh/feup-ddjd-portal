@@ -39,7 +39,7 @@ public class Portal : MonoBehaviour {
             Transform destination;
             float displacementPortal; 
 
-             Vector2 newPosition = new Vector2(0, 0);
+            Vector2 newPosition = new Vector2(0, 0);
             Vector2 newVelocity = new Vector2(0, 0);
 
             if (isOrange) {
