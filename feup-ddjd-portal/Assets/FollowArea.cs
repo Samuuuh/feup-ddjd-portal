@@ -47,8 +47,6 @@ public class FollowArea : MonoBehaviour
     void FollowPlayer(){
         direction = player.transform.position - patrol.transform.position;
 
-        Debug.Log("Following Player");
-
         if(direction.x < 0){
             // Move Left
             movingRight = false;
