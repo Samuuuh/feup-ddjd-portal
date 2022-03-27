@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5863280331903191279}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.9292846, y: 0.6490917, z: 0}
-  m_LocalScale: {x: 15.548514, y: 2.443916, z: 1}
+  m_LocalPosition: {x: 2.0521, y: 2.9531, z: 0}
+  m_LocalScale: {x: 42.091747, y: 7.051824, z: 1}
   m_Children: []
   m_Father: {fileID: 5863280332768820346}
   m_RootOrder: 1
@@ -98,6 +98,7 @@ MonoBehaviour:
   player: {fileID: 0}
   patrol: {fileID: 5863280332768820615}
   collisionArea: {fileID: 5863280332708482202}
+  speed: 2
 --- !u!1 &5863280332708482202
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,8 +124,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5863280332708482202}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.9035867, y: 0.42034832, z: 0}
-  m_LocalScale: {x: 15.5750675, y: 1.9868579, z: 1}
+  m_LocalPosition: {x: 2.0111, y: 1.3059, z: 0}
+  m_LocalScale: {x: 42.05607, y: 3.7580194, z: 1}
   m_Children: []
   m_Father: {fileID: 5863280332768820346}
   m_RootOrder: 0

@@ -10,7 +10,7 @@ public class FollowArea : MonoBehaviour
     public GameObject collisionArea;
     
     // private float directionValue;
-    private float speed = 2f;
+    public float speed = 2f;
     private Vector3 direction;
     private bool movingRight = true;
 
