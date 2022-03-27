@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravityScale: 2.5
   fallGravityMultiplier: 2
-  frictionAmount: 0.68
-  coyoteTime: 0.15
-  movementSpeed: 8
+  frictionAmount: 1
+  coyoteTime: 0.11
+  movementSpeed: 11
   velocityPower: 0.96
-  acceleration: 7
-  deceleration: -13
+  acceleration: 12
+  deceleration: -19
   jumpForce: 9
   jumpGround:
     serializedVersion: 2

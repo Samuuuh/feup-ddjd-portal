@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement: MonoBehaviour {
     [SerializeField] private PlayerData data;
     [HideInInspector] public bool isJumping = true;
+    [HideInInspector] public bool isGrounded = false;
 
     private float jumpTime;
     private float lastGroundedTime;

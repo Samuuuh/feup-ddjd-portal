@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8770072620880171361}
   - component: {fileID: 8770072620880171360}
   - component: {fileID: 8770072620880171362}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Horizontal
   m_TagString: SurfaceHor
   m_Icon: {fileID: 0}

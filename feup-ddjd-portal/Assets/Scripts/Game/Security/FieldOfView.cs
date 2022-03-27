@@ -5,7 +5,7 @@ using UnityEngine;
 public class FieldOfView : MonoBehaviour {
 
     // Objects
-    public LayerMask whatIsSolid;
+    public LayerMask playerLayer;
     private Mesh mesh;
     
     // Angle
@@ -26,14 +26,8 @@ public class FieldOfView : MonoBehaviour {
 
 
     private void Start(){
-
-        // Initialize mesh material for the field of view
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
-
-        // Color color = new Color(255f,255f,0f,0f);
-        // color.a = 0;
-        // GetComponentInChildren<MeshRenderer>().material.color = color;
 
         // Câmera angle intialization
         initialAngle = maxAngle + fov/2;
@@ -43,7 +37,7 @@ public class FieldOfView : MonoBehaviour {
         currentTime = initialTime;
     }
 
-    void Update() {
+    void FixedUpdate() {
         Vector3 relativePositionVertex = Vector3.zero;
         int rayCount = triangleCount;
         float angle = initialAngle;
@@ -60,29 +54,24 @@ public class FieldOfView : MonoBehaviour {
 
         bool foundPlayer = false;
 
-
         // Draw triangles and ray cast from camera
         for(int i = 0; i <= rayCount; i++) {
-
             LayerMask floor = LayerMask.GetMask("Default");
 
-            RaycastHit2D hitPlayer = Physics2D.Raycast(transform.position, GetVectorFromAngle(angle), viewDistance, whatIsSolid);
+            RaycastHit2D hitPlayer = Physics2D.Raycast(transform.position, GetVectorFromAngle(angle), viewDistance, playerLayer);
             RaycastHit2D hitWall = Physics2D.Raycast(transform.position, GetVectorFromAngle(angle), viewDistance, floor);
-
-            
+            Debug.Log(hitPlayer.collider);
             if (hitPlayer.collider != null) {
                 foundPlayer = true;
             }
 
-            if(hitWall.collider != null){
+            if (hitWall.collider != null) {
                 vertex = relativePositionVertex + GetVectorFromAngle(angle) * hitWall.distance;
-            }else{
+            } else {
                 vertex = relativePositionVertex + GetVectorFromAngle(angle) * viewDistance;
             }
-        
 
             vertices[vertexIndex] = vertex;
-
 
             if (i > 0) {
                 triangles[triangleIndex] = 0;
@@ -103,24 +92,20 @@ public class FieldOfView : MonoBehaviour {
         // Rotate the câmera at a certain speed
         RotateAngle();
 
-        // Player being seen for a certain amount of time
-        if(foundPlayer){
+        if (foundPlayer) {
             Countdown();
-        }else{
+        } else {
             currentTime = initialTime;
         }
     }
-
 
     private Vector3 GetVectorFromAngle(float angle){
         float angleRad = angle * (Mathf.PI/180f);
         return new Vector3(Mathf.Cos(angleRad),Mathf.Sin(angleRad));
     }
 
-
     private void RotateAngle(){
-
-        if(goingRight){
+        if(goingRight) {
             if (initialAngle + rotateSpeed/10 < minAngle) initialAngle += rotateSpeed/10;
             else if(initialAngle + rotateSpeed >= minAngle){
                 initialAngle = minAngle;
@@ -134,11 +119,9 @@ public class FieldOfView : MonoBehaviour {
                 goingRight = true; 
             } 
         }
-
     }
 
     private void Countdown(){
-
         Debug.Log(currentTime);
         if(currentTime <= 0) Debug.Log("TIME'S UP, GAME LOSS");
         else currentTime -= 1 * Time.deltaTime;

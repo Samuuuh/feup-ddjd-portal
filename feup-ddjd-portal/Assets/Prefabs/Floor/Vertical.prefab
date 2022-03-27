@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2832726771147091557}
   - component: {fileID: 2832726769886348963}
   - component: {fileID: 2832726769886348957}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Vertical
   m_TagString: SurfaceVer
   m_Icon: {fileID: 0}

@@ -2,23 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrabController : MonoBehaviour{
-    
+public class GrabController : MonoBehaviour {
     public Transform grabDetect;
     public Transform boxHolder;
     public float rayDist;
-
 
     private bool holding = false;
     private GameObject cube;
 
     // // Update is called once per frame
-    void Update(){
-
-
+    void Update() {
         RaycastHit2D[] grabCheckRight = Physics2D.RaycastAll(grabDetect.position, Vector2.right * transform.localScale, rayDist);
         RaycastHit2D[] grabCheckLeft = Physics2D.RaycastAll(grabDetect.position, Vector2.left * transform.localScale, rayDist);
-
 
         if(Input.GetKeyDown(KeyCode.E)){
             if(!holding){
@@ -40,19 +35,15 @@ public class GrabController : MonoBehaviour{
                 DropCube();
             }   
         }
-
     }
 
     private void GrabCube(RaycastHit2D grabCheck){
-
         grabCheck.collider.gameObject.transform.parent = boxHolder;
         grabCheck.collider.gameObject.transform.position = boxHolder.position;
         grabCheck.collider.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+        cube = grabCheck.collider.gameObject; 
+
         holding = true;
-
-        cube = grabCheck.collider.gameObject;
-
-         
     }
 
     private void DropCube(){
@@ -60,5 +51,4 @@ public class GrabController : MonoBehaviour{
         cube.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
         holding = false;
     }
-
 }

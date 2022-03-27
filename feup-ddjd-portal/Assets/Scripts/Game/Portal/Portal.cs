@@ -33,7 +33,7 @@ public class Portal : MonoBehaviour {
         if (other.gameObject.tag == "Orange Portal") {
             Destroy(other.gameObject);
         }
-        else if(other.gameObject.tag == "Player") {
+        else if (other.gameObject.tag == "Player" || other.gameObject.tag == "Cube") {
             Rigidbody2D rb = other.gameObject.GetComponent<Rigidbody2D>();
 
             Transform destination;
