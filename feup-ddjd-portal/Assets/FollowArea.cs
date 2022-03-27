@@ -12,16 +12,30 @@ public class FollowArea : MonoBehaviour
     // private float directionValue;
     private float speed = 2f;
     private Vector3 direction;
-    public bool foundPlayer = false;
     private bool movingRight = true;
 
     private float rightEdge;
     private float leftEdge;
 
 
+    private Vector3 topLeft;
+    private Vector3 bottomRight;
+
+
+
     void Start(){
 
-        // Get Area Width
+        // Get Follow Area Width and height
+        SpriteRenderer followAreaRenderer = GetComponent<SpriteRenderer>();
+        float followWidth = followAreaRenderer.sprite.bounds.size.x * gameObject.transform.lossyScale.x;
+        float followHeight = followAreaRenderer.sprite.bounds.size.y * gameObject.transform.lossyScale.y;
+
+        topLeft = gameObject.transform.position + new Vector3(-followWidth / 2, followHeight / 2, 0);
+        bottomRight = gameObject.transform.position + new Vector3(followWidth / 2, -followHeight / 2, 0);
+
+
+
+        // Get Collision Area Width
         SpriteRenderer collisionAreaRenderer = collisionArea.GetComponent<SpriteRenderer>();
         float spriteWidth = collisionAreaRenderer.sprite.bounds.size.x * collisionArea.transform.lossyScale.x;
 
@@ -36,12 +50,13 @@ public class FollowArea : MonoBehaviour
     }
 
     void Update(){
-        
-        if(!foundPlayer){
-            Move();
-        }else{
+
+        if(FindingPlayer()){
             FollowPlayer();
+        }else{
+            Move();
         }
+
     }
 
     void FollowPlayer(){
@@ -59,17 +74,6 @@ public class FollowArea : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collider){
-        if(collider.name == "Player"){
-            foundPlayer = true;
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D collider){
-        if(collider.name == "Player"){
-            foundPlayer = false;
-        }
-    }
 
     void SwapDirection(){
         if(movingRight) movingRight = false;
@@ -85,6 +89,11 @@ public class FollowArea : MonoBehaviour
         // Move in the selected direction
         if(movingRight) patrol.transform.Translate(Vector2.right * speed * Time.deltaTime);
         else patrol.transform.Translate(Vector2.left * speed * Time.deltaTime);
+    }
+
+
+    bool FindingPlayer(){
+        return player.transform.position.x >= topLeft.x && player.transform.position.x <= bottomRight.x && player.transform.position.y <= topLeft.y && player.transform.position.y >= bottomRight.y;
     }
 
 }
