@@ -12,11 +12,6 @@ public class PlayerMove : MonoBehaviour {
     [SerializeField] float fall_multiplier = 2f;
     [SerializeField] float not_jumping_multiplier = 2.5f;
 
-    [SerializeField] float minx;
-    [SerializeField] float maxx;
-    [SerializeField] float miny;
-    [SerializeField] float maxy;
-
     public Animator animator;
     public bool facingRight = true;
 
@@ -25,10 +20,6 @@ public class PlayerMove : MonoBehaviour {
     }
 
     void Update() {
-        // Check if Player is dead
-        Dead();
-
-        // Jump
         if (Input.GetKeyDown(KeyCode.Space) && jumpAllowed) {
             animator.SetFloat("Jump", 1.0f);
 
@@ -72,18 +63,9 @@ public class PlayerMove : MonoBehaviour {
         }
 }
 
-    void Dead() {
-        if(gameObject.transform.position.x < minx || gameObject.transform.position.x > maxx || gameObject.transform.position.y < miny || gameObject.transform.position.y > maxy)
-        {
-            this.transform.position = spawnPoint;
-        }
-    }
-
-
     void OnTriggerEnter2D(Collider2D other)  {
         if ((other.gameObject.CompareTag("Cube") && !jumpAllowed) || (other.gameObject.CompareTag("Ground") && !jumpAllowed) || (other.gameObject.CompareTag("SurfaceVer") && !jumpAllowed) || (other.gameObject.CompareTag("SurfaceHor") && !jumpAllowed)) {
             animator.SetFloat("Jump", 0.0f);
-
             GetComponent<Rigidbody2D>().gravityScale = base_gravity_scale;
             jumpAllowed = true;
         }
@@ -93,7 +75,6 @@ public class PlayerMove : MonoBehaviour {
     void OnTriggerStay2D(Collider2D other){
         if ((other.gameObject.CompareTag("Cube") && !jumpAllowed) || (other.gameObject.CompareTag("Ground") && !jumpAllowed) || (other.gameObject.CompareTag("SurfaceVer") && !jumpAllowed) || (other.gameObject.CompareTag("SurfaceHor") && !jumpAllowed)) {
             animator.SetFloat("Jump", 0.0f);
-
             GetComponent<Rigidbody2D>().gravityScale = base_gravity_scale;
             jumpAllowed = true;
         }
