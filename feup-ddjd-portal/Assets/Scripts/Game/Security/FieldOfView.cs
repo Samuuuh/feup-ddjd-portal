@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FieldOfView : MonoBehaviour {
 
@@ -123,7 +124,7 @@ public class FieldOfView : MonoBehaviour {
 
     private void Countdown(){
         Debug.Log(currentTime);
-        if(currentTime <= 0) Debug.Log("TIME'S UP, GAME LOSS");
+        if(currentTime <= 0) SceneManager.LoadScene("Game Over");
         else currentTime -= 1 * Time.deltaTime;
 
     } 
