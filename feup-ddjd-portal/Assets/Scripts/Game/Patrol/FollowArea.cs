@@ -65,11 +65,13 @@ public class FollowArea : MonoBehaviour
         if(direction.x < 0){
             // Move Left
             movingRight = false;
+            patrol.GetComponent<SpriteRenderer>().flipX = true;
             Move();
         }
         else if (direction.x > 0){
             // Move Right
             movingRight = true;
+            patrol.GetComponent<SpriteRenderer>().flipX = false;
             Move();
         }
     }
