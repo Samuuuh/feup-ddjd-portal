@@ -76,8 +76,16 @@ public class FollowArea : MonoBehaviour
 
 
     void SwapDirection(){
-        if(movingRight) movingRight = false;
-        else movingRight = true;
+        if(movingRight){
+            movingRight = false;
+            patrol.GetComponent<SpriteRenderer>().flipX = true;
+        } 
+        else{
+            movingRight = true;
+            patrol.GetComponent<SpriteRenderer>().flipX = false;
+        } 
+
+        
     }
 
     void Move(){
