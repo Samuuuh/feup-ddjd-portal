@@ -38,7 +38,7 @@ public class FieldOfView : MonoBehaviour {
         currentTime = initialTime;
     }
 
-    void FixedUpdate() {
+    void Update() {
         Vector3 relativePositionVertex = Vector3.zero;
         int rayCount = triangleCount;
         float angle = initialAngle;
@@ -57,7 +57,7 @@ public class FieldOfView : MonoBehaviour {
 
         // Draw triangles and ray cast from camera
         for(int i = 0; i <= rayCount; i++) {
-            LayerMask floor = LayerMask.GetMask("Default");
+            LayerMask floor = LayerMask.GetMask("Floor");
 
             RaycastHit2D hitPlayer = Physics2D.Raycast(transform.position, GetVectorFromAngle(angle), viewDistance, playerLayer);
             RaycastHit2D hitWall = Physics2D.Raycast(transform.position, GetVectorFromAngle(angle), viewDistance, floor);
