@@ -42,9 +42,10 @@ GameObject:
   - component: {fileID: 2473885974495333972}
   - component: {fileID: 2473885974495333975}
   - component: {fileID: 2473885974495333974}
-  - component: {fileID: 2473885974495333977}
   - component: {fileID: 2473885974495333976}
   - component: {fileID: 3810336707507052430}
+  - component: {fileID: 2944704933635992462}
+  - component: {fileID: 1432166492589629326}
   m_Layer: 1
   m_Name: Player
   m_TagString: Player
@@ -167,27 +168,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &2473885974495333977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2473885974495333979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 394ad0a7909803f4f9be06ec20798d33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 10
-  jumpHeight: 10
-  jumpAllowed: 1
-  spawnPoint: {x: 1, y: 0, z: 0}
-  base_gravity_scale: 3
-  fall_multiplier: 2
-  not_jumping_multiplier: 2.5
-  animator: {fileID: 2473885974495333976}
-  facingRight: 1
 --- !u!95 &2473885974495333976
 Animator:
   serializedVersion: 3
@@ -222,6 +202,34 @@ MonoBehaviour:
   grabDetect: {fileID: 1741385819371993136}
   boxHolder: {fileID: 4164577348520813177}
   rayDist: 0.75
+--- !u!114 &2944704933635992462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2473885974495333979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 484d77da22a9f6c46a4d941870b7b685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: d134a1cb1af4cb146b6101bd53266d8b, type: 2}
+  isJumping: 1
+  isGrounded: 0
+--- !u!114 &1432166492589629326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2473885974495333979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1309d686fd2442649b28ee7099f213ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  facingRight: 1
 --- !u!1 &2473885974529676203
 GameObject:
   m_ObjectHideFlags: 0

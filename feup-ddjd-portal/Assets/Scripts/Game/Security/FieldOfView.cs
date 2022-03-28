@@ -1,9 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class FieldOfView : MonoBehaviour {
+    [SerializeField] Text countdownText;
+    float minutes = 0f;
+    float seconds = 0f;
+    string m = "";
+    string s = "";
 
     // Objects
     public LayerMask playerLayer;
@@ -123,9 +129,25 @@ public class FieldOfView : MonoBehaviour {
     }
 
     private void Countdown(){
-        Debug.Log(currentTime);
-        if(currentTime <= 0) SceneManager.LoadScene("Game Over");
-        else currentTime -= 1 * Time.deltaTime;
+        currentTime -= Time.deltaTime;
 
+        if (currentTime <= 0) SceneManager.LoadScene("Game Over");
+
+        minutes = Mathf.Floor(currentTime / 60);
+        seconds = Mathf.RoundToInt(currentTime % 60);
+
+        m = minutes.ToString();
+        if (minutes < 10) {
+            m = "0" + minutes.ToString();
+        } else {
+            m = minutes.ToString();
+        }
+        if (seconds < 10) {
+            s = "0" + seconds.ToString();
+        } else {
+            s = seconds.ToString();
+        }
+
+        countdownText.text = m + ":" + s;
     } 
 }
