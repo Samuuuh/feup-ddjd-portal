@@ -34,21 +34,25 @@ public class GrabController : MonoBehaviour {
             else {
                 DropCube();
             }   
+        }else{
+            if(holding){
+                cube.transform.position = boxHolder.position;
+            }
         }
     }
 
     private void GrabCube(RaycastHit2D grabCheck){
-        grabCheck.collider.gameObject.transform.parent = boxHolder;
-        grabCheck.collider.gameObject.transform.position = boxHolder.position;
-        grabCheck.collider.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
         cube = grabCheck.collider.gameObject; 
+        cube.transform.parent = boxHolder;
+        cube.transform.position = boxHolder.position;
+        // grabCheck.collider.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
 
         holding = true;
     }
 
     private void DropCube(){
         cube.transform.parent = null;
-        cube.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+        // cube.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
         holding = false;
     }
 }
