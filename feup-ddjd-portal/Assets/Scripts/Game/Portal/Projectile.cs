@@ -64,18 +64,45 @@ public class Projectile : MonoBehaviour {
 
        Vector3 pos = transform.position;
 
-       if(transform.position.y > topEdge){
-           pos.y = topEdge;
+
+       Debug.Log("pos " + transform.position);
+       Debug.Log("top " + topEdge);
+       Debug.Log("bottom " + bottomEdge);
+       Debug.Log("left " + leftEdge);
+       Debug.Log("right " + rightEdge);
+
+
+       if(type == "horizontal"){
+           if(transform.position.x < leftEdge){
+               pos.x = leftEdge;
+           }
+           else if(transform.position.x > rightEdge){
+               pos.x = rightEdge;
+           }
        }
-       else if(transform.position.y < bottomEdge){
-           pos.y = bottomEdge;
+       else if(type =="vertical"){
+           if(transform.position.y > topEdge){
+               pos.y = topEdge;
        }
-       else if(transform.position.x < leftEdge){
-           pos.x = leftEdge;
+            else if(transform.position.y < bottomEdge){
+                pos.y = bottomEdge;
+            }
        }
-       else if(transform.position.x > rightEdge){
-           pos.x = rightEdge;
-       }
+       
+       
+
+    //    if(transform.position.x > topEdge){
+    //        pos.y = topEdge;
+    //    }
+    //    else if(transform.position.x < bottomEdge){
+    //        pos.y = bottomEdge;
+    //    }
+    //    else if(transform.position.y < leftEdge){
+    //        pos.x = leftEdge;
+    //    }
+    //    else if(transform.position.y > rightEdge){
+    //        pos.x = rightEdge;
+    //    }
 
 
 
@@ -91,14 +118,28 @@ public class Projectile : MonoBehaviour {
     void GetWallEdges(GameObject wall){
         // Get Collision Area Width
         SpriteRenderer wallRenderer = wall.GetComponent<SpriteRenderer>();
-        float wallWidth = wallRenderer.sprite.bounds.size.y * wall.transform.lossyScale.y;
-        float wallHeight = wallRenderer.sprite.bounds.size.x * wall.transform.lossyScale.x;
+        // float wallWidth = wallRenderer.sprite.bounds.size.x * wall.transform.lossyScale.x;
+        // float wallHeight = wallRenderer.sprite.bounds.size.y * wall.transform.lossyScale.y;
+
+        float wallWidth = wall.transform.lossyScale.x;
+        float wallHeight =  wall.transform.lossyScale.y;
+
+        // Debug.Log("x=" + wall.transform.lossyScale.x);
+        // Debug.Log("y=" + wall.transform.lossyScale.y);
+       
+
+        // Debug.Log("Width " + wallWidth);
+        // Debug.Log("Height " + wallHeight);
+
 
         topEdge = wall.transform.position.y + wallHeight/2 - 1.15f;
-        bottomEdge = wall.transform.position.y + -wallHeight/2 + 1.15f;
+        bottomEdge = wall.transform.position.y - wallHeight/2 + 1.15f;
 
-        leftEdge = wall.transform.position.x + wallWidth/2 - 1.15f;
-        rightEdge = wall.transform.position.x - wallWidth/2 + 1.15f;
+        leftEdge = wall.transform.position.x - wallWidth/2 + 1.15f;
+        rightEdge = wall.transform.position.x + wallWidth/2 - 1.15f;
+
+
+     
       
     }
 
