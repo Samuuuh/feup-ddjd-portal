@@ -31,6 +31,11 @@ public class FieldOfView : MonoBehaviour {
     public float rotateSpeed = 5f;
     public int triangleCount = 25;
 
+    // Color
+    private Renderer renderer;
+    private Color32 yellow;
+    private Color32 redInitial, redFinal;
+
 
     private void Start(){
         mesh = new Mesh();
@@ -42,6 +47,20 @@ public class FieldOfView : MonoBehaviour {
 
         // Câmera Timer initialization
         currentTime = initialTime;
+
+        renderer = GetComponent<Renderer>();
+
+        yellow = Color.yellow;
+        yellow.a = 100;
+
+        redInitial = Color.red;
+        redInitial.a = 100;
+
+        redFinal = Color.red;
+        redFinal.a = 180;
+
+
+       
     }
 
     void Update() {
@@ -68,8 +87,9 @@ public class FieldOfView : MonoBehaviour {
             RaycastHit2D hitPlayer = Physics2D.Raycast(transform.position, GetVectorFromAngle(angle), viewDistance, playerLayer);
             RaycastHit2D hitWall = Physics2D.Raycast(transform.position, GetVectorFromAngle(angle), viewDistance, floor);
             Debug.Log(hitPlayer.collider);
-            if (hitPlayer.collider != null) {
+            if (hitPlayer.collider != null && foundPlayer == false) {
                 foundPlayer = true;
+                MakeRed();
             }
 
             if (hitWall.collider != null) {
@@ -102,6 +122,7 @@ public class FieldOfView : MonoBehaviour {
         if (foundPlayer) {
             Countdown();
         } else {
+            MakeYellow();
             currentTime = initialTime;
         }
     }
@@ -149,5 +170,23 @@ public class FieldOfView : MonoBehaviour {
         }
 
         countdownText.text = m + ":" + s;
-    } 
+
+        IntensifyColor();
+    }
+
+
+    private void MakeRed(){
+        renderer.material.SetColor("_Color", redInitial);
+    }
+
+    private void MakeYellow(){
+        renderer.material.SetColor("_Color", yellow);
+    }
+
+    private void IntensifyColor(){
+
+        float lerp = Mathf.PingPong(currentTime, initialTime) / initialTime;
+        renderer.material.SetColor("_Color", Color.Lerp(redFinal, redInitial, lerp));
+
+    }
 }
