@@ -93,7 +93,6 @@ GameObject:
   - component: {fileID: 6198204642572811247}
   - component: {fileID: 6037220037329640950}
   - component: {fileID: 3477976497570982291}
-  - component: {fileID: 74505448735002803}
   m_Layer: 1
   m_Name: OrangePortal
   m_TagString: Orange Portal
@@ -160,27 +159,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.93339735, y: 2.429651}
   m_EdgeRadius: 0
---- !u!50 &74505448735002803
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1385146368211629902}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1 &1392972136112798139
 GameObject:
   m_ObjectHideFlags: 0
