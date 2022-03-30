@@ -87,7 +87,9 @@ public class FieldOfView : MonoBehaviour {
             RaycastHit2D hitPlayer = Physics2D.Raycast(transform.position, GetVectorFromAngle(angle), viewDistance, playerLayer);
             RaycastHit2D hitWall = Physics2D.Raycast(transform.position, GetVectorFromAngle(angle), viewDistance, floor);
             Debug.Log(hitPlayer.collider);
-            if (hitPlayer.collider != null && foundPlayer == false) {
+
+
+            if (hitPlayer.collider != null && hitWall.collider == null && foundPlayer == false) {
                 foundPlayer = true;
                 MakeRed();
             }
