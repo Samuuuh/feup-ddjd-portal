@@ -84,20 +84,25 @@ public class FieldOfView : MonoBehaviour {
         for(int i = 0; i <= rayCount; i++) {
             LayerMask floor = LayerMask.GetMask("Floor");
 
-            RaycastHit2D hitPlayer = Physics2D.Raycast(transform.position, GetVectorFromAngle(angle), viewDistance, playerLayer);
+            
             RaycastHit2D hitWall = Physics2D.Raycast(transform.position, GetVectorFromAngle(angle), viewDistance, floor);
-            Debug.Log(hitPlayer.collider);
+            RaycastHit2D hitPlayer;
 
-
-            if (hitPlayer.collider != null && hitWall.collider == null && foundPlayer == false) {
-                foundPlayer = true;
-                MakeRed();
-            }
+           
 
             if (hitWall.collider != null) {
                 vertex = relativePositionVertex + GetVectorFromAngle(angle) * hitWall.distance;
+                hitPlayer = Physics2D.Raycast(transform.position, GetVectorFromAngle(angle), hitWall.distance, playerLayer);
             } else {
                 vertex = relativePositionVertex + GetVectorFromAngle(angle) * viewDistance;
+                hitPlayer = Physics2D.Raycast(transform.position, GetVectorFromAngle(angle), viewDistance, playerLayer);
+            }
+
+             
+            
+            if (hitPlayer.collider != null && foundPlayer == false) {
+                foundPlayer = true;
+                MakeRed();
             }
 
             vertices[vertexIndex] = vertex;
