@@ -44,15 +44,15 @@ public class GrabController : MonoBehaviour {
     private void GrabCube(RaycastHit2D grabCheck){
         cube = grabCheck.collider.gameObject; 
         cube.transform.parent = boxHolder;
-        cube.transform.position = boxHolder.position;
-        // grabCheck.collider.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+        // cube.transform.position = boxHolder.position;
+        grabCheck.collider.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
 
         holding = true;
     }
 
     private void DropCube(){
         cube.transform.parent = null;
-        // cube.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+        cube.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
         holding = false;
     }
 }
