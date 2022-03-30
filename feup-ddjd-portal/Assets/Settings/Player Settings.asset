@@ -16,11 +16,11 @@ MonoBehaviour:
   fallGravityMultiplier: 2
   frictionAmount: 1
   coyoteTime: 0.11
-  movementSpeed: 11
+  movementSpeed: 9
   velocityPower: 0.96
   acceleration: 12
   deceleration: -19
-  jumpForce: 10
+  jumpForce: 9
   jumpGround:
     serializedVersion: 2
     m_Bits: 192
