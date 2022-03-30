@@ -12,6 +12,7 @@ public class Projectile : MonoBehaviour {
     private Vector3 startPosition, endPosition;
 
     private float bottomEdge, topEdge, rightEdge, leftEdge;
+    private Vector3 wallCenter; 
 
     void Start() {
         startPosition = transform.position;
@@ -28,8 +29,6 @@ public class Projectile : MonoBehaviour {
             if (hitInfo.collider.tag == "SurfaceVer") {
                 if (endPosition.x < 0f) {
                     endPosition.x = -1.5f;
-
-                    Debug.Log(1);
                     CreatePortal(Quaternion.Euler(0f, 0f, 180f), endPosition.x, "vertical");
                 } else {
                     endPosition.x = 1.5f;
@@ -72,37 +71,26 @@ public class Projectile : MonoBehaviour {
        Debug.Log("right " + rightEdge);
 
 
-       if(type == "horizontal"){
-           if(transform.position.x < leftEdge){
-               pos.x = leftEdge;
-           }
-           else if(transform.position.x > rightEdge){
-               pos.x = rightEdge;
-           }
-       }
-       else if(type =="vertical"){
-           if(transform.position.y > topEdge){
-               pos.y = topEdge;
-       }
+        if(type == "horizontal"){
+            if(transform.position.x < leftEdge){
+                pos.x = leftEdge;
+            }
+            else if(transform.position.x > rightEdge){
+                pos.x = rightEdge;
+            }
+
+            pos.y = wallCenter.y;
+        }
+        else if(type =="vertical"){
+            if(transform.position.y > topEdge){
+                pos.y = topEdge;
+            }
             else if(transform.position.y < bottomEdge){
                 pos.y = bottomEdge;
             }
-       }
-       
-       
 
-    //    if(transform.position.x > topEdge){
-    //        pos.y = topEdge;
-    //    }
-    //    else if(transform.position.x < bottomEdge){
-    //        pos.y = bottomEdge;
-    //    }
-    //    else if(transform.position.y < leftEdge){
-    //        pos.x = leftEdge;
-    //    }
-    //    else if(transform.position.y > rightEdge){
-    //        pos.x = rightEdge;
-    //    }
+            pos.x = wallCenter.x;
+        }
 
 
 
@@ -137,6 +125,8 @@ public class Projectile : MonoBehaviour {
 
         leftEdge = wall.transform.position.x - wallWidth/2 + 1.15f;
         rightEdge = wall.transform.position.x + wallWidth/2 - 1.15f;
+
+        wallCenter =  wall.transform.position;
 
 
      
