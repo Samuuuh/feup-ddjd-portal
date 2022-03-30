@@ -19,6 +19,10 @@ public class Projectile : MonoBehaviour {
     }
 
     private void Update() {
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
+    }
+
+    private void FixedUpdate() {
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, transform.up, 0, whatIsSolid);
 
         if (hitInfo.collider != null) {
@@ -29,28 +33,27 @@ public class Projectile : MonoBehaviour {
             if (hitInfo.collider.tag == "SurfaceVer") {
                 if (endPosition.x < 0f) {
                     endPosition.x = -1.5f;
-                    CreatePortal(Quaternion.Euler(0f, 0f, 180f), endPosition.x, "vertical");
+                    CreatePortal(Quaternion.Euler(0f, 0f, 180f), endPosition.x, "vertical", leftEdge);
                 } else {
                     endPosition.x = 1.5f;
-                    CreatePortal(Quaternion.Euler(0f, 0f, 0f), endPosition.x, "vertical");
+                    CreatePortal(Quaternion.Euler(0f, 0f, 0f), endPosition.x, "vertical", rightEdge);
 
                 }
             } else if (hitInfo.collider.tag == "SurfaceHor") {
                  if (endPosition.y < 0f) {
                     endPosition.y = -1.5f;
-                    CreatePortal(Quaternion.Euler(0f, 0f, -90f), endPosition.y, "horizontal");
+                    CreatePortal(Quaternion.Euler(0f, 0f, -90f), endPosition.y, "horizontal", topEdge);
                 } else {
                     endPosition.y = 1.5f;
-                    CreatePortal(Quaternion.Euler(0f, 0f, 90f), endPosition.y, "horizontal");
+                    CreatePortal(Quaternion.Euler(0f, 0f, 90f), endPosition.y, "horizontal", bottomEdge);
                 }
             } else {
                 Destroy(gameObject);
             }
         }
-        transform.Translate(Vector2.right * speed * Time.deltaTime);
     }
 
-    void CreatePortal(Quaternion value, float displacement, string type) {
+    void CreatePortal(Quaternion value, float displacement, string type, float relativePosition) {
         if (isOrange) { 
             if (GameObject.FindGameObjectWithTag("Orange Portal") != null) {
                 Destroy(GameObject.FindGameObjectWithTag("Orange Portal"));
@@ -62,37 +65,26 @@ public class Projectile : MonoBehaviour {
         }
 
        Vector3 pos = transform.position;
-
-
-       Debug.Log("pos " + transform.position);
-       Debug.Log("top " + topEdge);
-       Debug.Log("bottom " + bottomEdge);
-       Debug.Log("left " + leftEdge);
-       Debug.Log("right " + rightEdge);
-
-
         if(type == "horizontal"){
-            if(transform.position.x < leftEdge){
+            if (transform.position.x < leftEdge){
                 pos.x = leftEdge;
             }
-            else if(transform.position.x > rightEdge){
+            else if (transform.position.x > rightEdge){
                 pos.x = rightEdge;
             }
 
-            pos.y = wallCenter.y;
+            pos.y =  relativePosition;
         }
         else if(type =="vertical"){
-            if(transform.position.y > topEdge){
+            if (transform.position.y > topEdge){
                 pos.y = topEdge;
             }
-            else if(transform.position.y < bottomEdge){
+            else if (transform.position.y < bottomEdge){
                 pos.y = bottomEdge;
             }
 
-            pos.x = wallCenter.x;
+            pos.x = relativePosition;
         }
-
-
 
        GameObject newPortal = Instantiate(portalEffect, pos, value);
        newPortal.GetComponent<Portal>().displacement = displacement;
@@ -104,34 +96,13 @@ public class Projectile : MonoBehaviour {
 
 
     void GetWallEdges(GameObject wall){
-        // Get Collision Area Width
-        SpriteRenderer wallRenderer = wall.GetComponent<SpriteRenderer>();
-        // float wallWidth = wallRenderer.sprite.bounds.size.x * wall.transform.lossyScale.x;
-        // float wallHeight = wallRenderer.sprite.bounds.size.y * wall.transform.lossyScale.y;
-
         float wallWidth = wall.transform.lossyScale.x;
         float wallHeight =  wall.transform.lossyScale.y;
 
-        // Debug.Log("x=" + wall.transform.lossyScale.x);
-        // Debug.Log("y=" + wall.transform.lossyScale.y);
-       
+        topEdge = wall.transform.position.y + wallHeight/2;
+        bottomEdge = wall.transform.position.y - wallHeight/2;
 
-        // Debug.Log("Width " + wallWidth);
-        // Debug.Log("Height " + wallHeight);
-
-
-        topEdge = wall.transform.position.y + wallHeight/2 - 1.15f;
-        bottomEdge = wall.transform.position.y - wallHeight/2 + 1.15f;
-
-        leftEdge = wall.transform.position.x - wallWidth/2 + 1.15f;
-        rightEdge = wall.transform.position.x + wallWidth/2 - 1.15f;
-
-        wallCenter =  wall.transform.position;
-
-
-     
-      
+        leftEdge = wall.transform.position.x - wallWidth/2;
+        rightEdge = wall.transform.position.x + wallWidth/2;
     }
-
-
 }
