@@ -33,10 +33,10 @@ public class Projectile : MonoBehaviour {
             if (hitInfo.collider.tag == "SurfaceVer") {
                 if (endPosition.x < 0f) {
                     endPosition.x = -1.5f;
-                    CreatePortal(Quaternion.Euler(0f, 0f, 180f), endPosition.x, "vertical", leftEdge);
+                    CreatePortal(Quaternion.Euler(0f, 0f, 180f), endPosition.x, "vertical", rightEdge);
                 } else {
                     endPosition.x = 1.5f;
-                    CreatePortal(Quaternion.Euler(0f, 0f, 0f), endPosition.x, "vertical", rightEdge);
+                    CreatePortal(Quaternion.Euler(0f, 0f, 0f), endPosition.x, "vertical", leftEdge);
 
                 }
             } else if (hitInfo.collider.tag == "SurfaceHor") {
@@ -99,10 +99,10 @@ public class Projectile : MonoBehaviour {
         float wallWidth = wall.transform.lossyScale.x;
         float wallHeight =  wall.transform.lossyScale.y;
 
-        topEdge = wall.transform.position.y + wallHeight/2;
-        bottomEdge = wall.transform.position.y - wallHeight/2;
+        topEdge = wall.transform.position.y + wallHeight/2 +0.25f;
+        bottomEdge = wall.transform.position.y - wallHeight/2 - 0.25f;
 
-        leftEdge = wall.transform.position.x - wallWidth/2;
-        rightEdge = wall.transform.position.x + wallWidth/2;
+        leftEdge = wall.transform.position.x - wallWidth/2 - 0.25f;
+        rightEdge = wall.transform.position.x + wallWidth/2 + 0.25f;
     }
 }
