@@ -23,4 +23,8 @@ public class PlayerData : ScriptableObject {
     [Header("Jump")]
     public float jumpForce;
     public LayerMask jumpGround;
+
+    [Header("Portal")]
+    public GameObject projectileRight;
+    public GameObject projectileLeft;
 }

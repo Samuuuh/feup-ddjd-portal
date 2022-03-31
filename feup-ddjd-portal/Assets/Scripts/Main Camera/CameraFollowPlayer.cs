@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraFollowPlayer : MonoBehaviour {
-    GameObject player;
-
     public BoxCollider2D boundBox;
+
+    private GameObject player;
+
     private Vector3 minBounds;
     private Vector3 maxBounds;
 
@@ -24,7 +25,6 @@ public class CameraFollowPlayer : MonoBehaviour {
         halfWidth = halfHeight * Screen.width / Screen.height;
     }
 
-    // Update is called once per frame
     void Update() {
         transform.position = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
 

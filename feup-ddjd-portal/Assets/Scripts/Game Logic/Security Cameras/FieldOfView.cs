@@ -5,62 +5,68 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class FieldOfView : MonoBehaviour {
-    [SerializeField] Text countdownText;
-    float minutes = 0f;
-    float seconds = 0f;
-    string m = "";
-    string s = "";
-
-    // Objects
     public LayerMask playerLayer;
-    private Mesh mesh;
-    
-    // Angle
-    public float fov = 90f;
-    public float maxAngle = -90;
-    private float initialAngle;
-    private float minAngle;
-    private bool goingRight = true; 
 
-    // Timer
+    #region Timer
     public float initialTime;
     private float currentTime;
 
-    // Other Setings
-    public float viewDistance = 5f; 
-    public float rotateSpeed = 5f;
-    public int triangleCount = 25;
+    [SerializeField] 
+    private Text countdownText;
+    private float minutes = 0f;
+    private float seconds = 0f;
+    private string m = "";
+    private string s = "";
+    #endregion
 
-    // Color
+    #region FOV Angle
+    [SerializeField]
+    private float fov = 90f;
+    [SerializeField]
+    private float maxAngle = -90;
+    private float initialAngle;
+    private float minAngle;
+    #endregion
+
+    #region FOV Settings
+    [SerializeField]
+    private float viewDistance = 5f; 
+    [SerializeField]
+    private float rotateSpeed = 5f;
+    [SerializeField]
+    private int triangleCount = 25;
+    private bool goingRight = true; 
+    #endregion
+
+    #region Renderer
+    private Mesh mesh;
     private Renderer colorRenderer;
     private Color32 yellow;
     private Color32 redInitial, redFinal;
-
+    #endregion
 
     private void Start(){
+        #region FOV Angle
+        initialAngle = maxAngle + fov/2;
+        minAngle = maxAngle + fov;
+        #endregion
+
+        #region Timer
+        currentTime = initialTime;
+        #endregion 
+
+        #region Renderer
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
 
-        // Câmera angle intialization
-        initialAngle = maxAngle + fov/2;
-        minAngle = maxAngle + fov;
-
-        // Câmera Timer initialization
-        currentTime = initialTime;
-
         colorRenderer = GetComponent<Renderer>();
-
         yellow = Color.yellow;
         yellow.a = 100;
-
         redInitial = Color.red;
         redInitial.a = 100;
-
         redFinal = Color.red;
         redFinal.a = 180;
-
-
-       
+        #endregion
     }
 
     void FixedUpdate() {
@@ -84,11 +90,8 @@ public class FieldOfView : MonoBehaviour {
         for(int i = 0; i <= rayCount; i++) {
             LayerMask floor = LayerMask.GetMask("Floor");
 
-            
             RaycastHit2D hitWall = Physics2D.Raycast(transform.position, GetVectorFromAngle(angle), viewDistance, floor);
             RaycastHit2D hitPlayer;
-
-           
 
             if (hitWall.collider != null) {
                 vertex = relativePositionVertex + GetVectorFromAngle(angle) * hitWall.distance;
@@ -98,13 +101,10 @@ public class FieldOfView : MonoBehaviour {
                 hitPlayer = Physics2D.Raycast(transform.position, GetVectorFromAngle(angle), viewDistance, playerLayer);
             }
 
-             
-            
             if (hitPlayer.collider != null && foundPlayer == false) {
                 foundPlayer = true;
                 MakeRed();
             }
-
             vertices[vertexIndex] = vertex;
 
             if (i > 0) {

@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameLost : MonoBehaviour
-{
-
-    void OnTriggerEnter2D(Collider2D coll)  {
-
-        if(coll.name == "Player"){
+public class CatchPlayer : MonoBehaviour {
+    void OnTriggerEnter2D(Collider2D col)  {
+        if (col.name == "Player") {
             SceneManager.LoadScene("Game Over");
         }
     }
