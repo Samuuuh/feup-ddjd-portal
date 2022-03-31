@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c8b6b4781f8c0043a707fdbdb5caaff, type: 3}
   m_Name: Player Settings
   m_EditorClassIdentifier: 
-  gravityScale: 2.5
+  gravityScale: 2.3
   fallGravityMultiplier: 2
   frictionAmount: 1
-  coyoteTime: 0.11
+  coyoteTime: 0.21
   movementSpeed: 9
   velocityPower: 0.96
-  acceleration: 12
+  acceleration: 13
   deceleration: -19
-  jumpForce: 9
+  jumpForce: 14
   jumpGround:
     serializedVersion: 2
     m_Bits: 192

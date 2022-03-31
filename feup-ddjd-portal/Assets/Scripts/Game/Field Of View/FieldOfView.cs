@@ -23,7 +23,7 @@ public class FieldOfView : MonoBehaviour {
     private bool goingRight = true; 
 
     // Timer
-    public float initialTime = 2f;
+    public float initialTime;
     private float currentTime;
 
     // Other Setings
@@ -32,7 +32,7 @@ public class FieldOfView : MonoBehaviour {
     public int triangleCount = 25;
 
     // Color
-    private Renderer renderer;
+    private Renderer colorRenderer;
     private Color32 yellow;
     private Color32 redInitial, redFinal;
 
@@ -48,7 +48,7 @@ public class FieldOfView : MonoBehaviour {
         // Câmera Timer initialization
         currentTime = initialTime;
 
-        renderer = GetComponent<Renderer>();
+        colorRenderer = GetComponent<Renderer>();
 
         yellow = Color.yellow;
         yellow.a = 100;
@@ -63,7 +63,7 @@ public class FieldOfView : MonoBehaviour {
        
     }
 
-    void Update() {
+    void FixedUpdate() {
         Vector3 relativePositionVertex = Vector3.zero;
         int rayCount = triangleCount;
         float angle = initialAngle;
@@ -183,17 +183,17 @@ public class FieldOfView : MonoBehaviour {
 
 
     private void MakeRed(){
-        renderer.material.SetColor("_Color", redInitial);
+        colorRenderer.material.SetColor("_Color", redInitial);
     }
 
     private void MakeYellow(){
-        renderer.material.SetColor("_Color", yellow);
+        countdownText.text = "00:03";
+        colorRenderer.material.SetColor("_Color", yellow);
     }
 
     private void IntensifyColor(){
-
         float lerp = Mathf.PingPong(currentTime, initialTime) / initialTime;
-        renderer.material.SetColor("_Color", Color.Lerp(redFinal, redInitial, lerp));
+        colorRenderer.material.SetColor("_Color", Color.Lerp(redFinal, redInitial, lerp));
 
     }
 }
