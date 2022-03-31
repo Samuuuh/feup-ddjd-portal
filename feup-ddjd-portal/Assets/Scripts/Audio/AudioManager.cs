@@ -29,6 +29,7 @@ public class AudioManager: MonoBehaviour {
             ambientMusic.source = gameObject.AddComponent<AudioSource>();
             ambientMusic.source.volume = defaultVolume;
             ambientMusic.source.clip = ambientMusic.clip;
+            ambientMusic.source.loop = true;
             ambientMusic.source.Play();
         }
     }

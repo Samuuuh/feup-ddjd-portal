@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8390814839627012968}
   - component: {fileID: 8390814839627012971}
   - component: {fileID: 8390814839627013271}
-  m_Layer: 1
+  m_Layer: 6
   m_Name: CompanionCube
   m_TagString: Cube
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 5.12}
+    oldSize: {x: 3.4133334, y: 3.4133334}
     newSize: {x: 3.45, y: 3.47}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -149,7 +149,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 5.12}
+    oldSize: {x: 3.4133334, y: 3.4133334}
     newSize: {x: 3.45, y: 3.47}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
