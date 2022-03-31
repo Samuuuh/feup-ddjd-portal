@@ -15,6 +15,8 @@ public class Weapon : MonoBehaviour
     private float timeBtwShots;
     public float startTimeBtwShots;
 
+    public static bool canShoot = true;
+
     private void Update() {
         // Handles the weapon rotation
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
@@ -23,18 +25,21 @@ public class Weapon : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);
 
         if (timeBtwShots <= 0) {
-            if (Input.GetMouseButton(0)) {
+
+            if(canShoot){
+                if (Input.GetMouseButton(0)) {
                 //Instantiate(shotEffect, shotPoint.position, Quaternion.identity);
                 //camAnim.SetTrigger("shake");
                 Instantiate(projectileRight, shotPoint.position, transform.rotation);
                 timeBtwShots = startTimeBtwShots;
-            }
-            else if (Input.GetMouseButton(1)) {
-                //Instantiate(shotEffect, shotPoint.position, Quaternion.identity);
-                //camAnim.SetTrigger("shake");
-                Instantiate(projectileLeft, shotPoint.position, transform.rotation);
-                timeBtwShots = startTimeBtwShots;
-            }
+                }
+                else if (Input.GetMouseButton(1)) {
+                    //Instantiate(shotEffect, shotPoint.position, Quaternion.identity);
+                    //camAnim.SetTrigger("shake");
+                    Instantiate(projectileLeft, shotPoint.position, transform.rotation);
+                    timeBtwShots = startTimeBtwShots;
+                }
+            }            
         }
         else {
             timeBtwShots -= Time.deltaTime;
