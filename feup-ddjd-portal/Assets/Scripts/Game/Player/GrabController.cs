@@ -38,11 +38,11 @@ public class GrabController : MonoBehaviour {
                 DropCube();
             }   
         }
-        // else{
-        //     if(holding){
-        //         cube.transform.position = boxHolder.position;
-        //     }
-        // }
+    else{
+            if(holding){
+                cube.transform.position = boxHolder.position;
+            }
+        }
     }
 
     private void GrabCube(RaycastHit2D grabCheck){
