@@ -11,6 +11,7 @@ TagManager:
   - Orange Portal
   - Portal Gun
   - Cube
+  - Audio
   layers:
   - Default
   - TransparentFX
