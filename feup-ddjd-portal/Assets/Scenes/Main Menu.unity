@@ -1020,7 +1020,6 @@ GameObject:
   - component: {fileID: 1241343186}
   - component: {fileID: 1241343185}
   - component: {fileID: 1241343184}
-  - component: {fileID: 1241343183}
   m_Layer: 5
   m_Name: Settings Menu
   m_TagString: Untagged
@@ -1051,19 +1050,6 @@ RectTransform:
   m_AnchoredPosition: {x: -186.49997, y: -157.88}
   m_SizeDelta: {x: 482, y: 194.2365}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1241343183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1241343181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83ff23eb7d4d5a044b6af707c135f0cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeSlider: {fileID: 0}
 --- !u!114 &1241343184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2047,4 +2033,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83ff23eb7d4d5a044b6af707c135f0cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: 70fc1981065d67e4abc9a31a41dc113e, type: 2}
   volumeSlider: {fileID: 2075874664}

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioManager: MonoBehaviour {
+    public AudioSettings audioSettings;
     public Sound[] sounds;
 
     void Awake() {
@@ -11,7 +12,7 @@ public class AudioManager: MonoBehaviour {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
 
-            s.source.volume = s.volume;
+            s.source.volume = audioSettings.GetInstance().volume;
         }
     }
 
