@@ -13,7 +13,7 @@ public class CountdownTimer: MonoBehaviour {
     string s = "";
 
     [SerializeField] Text countdownText;
-    // Start is called before the first frame update
+
     void Start() {
         currentTime = startingTime;
     }

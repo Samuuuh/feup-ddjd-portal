@@ -1,15 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class NextLevelMenu : MonoBehaviour {
+    [SerializeField]
+    private GameManager manager;
+
+    [SerializeField]
+    private Text scoreValue;
+
+    void Start() {
+        scoreValue.text = "Score: " + manager.GetInstance().lastLevelScore;
+    }
+
     public void NextLevel() {
-        // TODO: Again, a Level Manager would be nice
-        SceneManager.LoadScene("Level One");
+        manager.NextLevel();
     }
 
     public void MainMenu() {
-        SceneManager.LoadScene("Level One");
+        manager.NextLevel();
     }
 }
