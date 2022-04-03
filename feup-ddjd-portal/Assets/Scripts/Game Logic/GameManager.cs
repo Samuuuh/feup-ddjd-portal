@@ -18,7 +18,6 @@ public class GameManager: ScriptableObject {
 
             if (!_instance)  {
                 _instance = CreateInstance<Settings>();
-
             }
 
             return _instance;
@@ -29,19 +28,27 @@ public class GameManager: ScriptableObject {
         return Settings.GetInstance();
     }
 
+    #region Global Attributes
     public void SetScore(float value) {
         Settings.GetInstance().lastLevelScore = value;
     }
+    #endregion
+    
+    #region Scene Change
+    public void MainMenu() {
+        SceneManager.LoadScene("Main Menu");
+    }
 
-    public void LoseGame() {
+    public void LevelOne() {
+        SceneManager.LoadScene("Level One");
+    }
+
+    public void GameLose() {
         SceneManager.LoadScene("Game Over");
     }
 
-    public void WinGame() {
-        SceneManager.LoadScene("Next Level");
+    public void GameEnd() {
+        SceneManager.LoadScene("Game End");
     }
-
-    public void NextLevel() {
-        SceneManager.LoadScene("Level One");
-    }
+    #endregion
 }

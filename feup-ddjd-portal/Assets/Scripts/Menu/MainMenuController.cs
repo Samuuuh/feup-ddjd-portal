@@ -4,8 +4,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenuController: MonoBehaviour {
+    [SerializeField]
+    private GameManager manager;
+
     public void playGame() {
-        SceneManager.LoadScene("Level One");
+        manager.LevelOne();
     }
 
     public void exit() {

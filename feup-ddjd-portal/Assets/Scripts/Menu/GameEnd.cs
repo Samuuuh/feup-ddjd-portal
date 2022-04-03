@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NextLevelMenu : MonoBehaviour {
+public class GameEnd : MonoBehaviour {
     [SerializeField]
     private GameManager manager;
 
@@ -14,11 +14,11 @@ public class NextLevelMenu : MonoBehaviour {
         scoreValue.text = "Score: " + manager.GetInstance().lastLevelScore;
     }
 
-    public void NextLevel() {
-        manager.NextLevel();
+    public void Restart() {
+        manager.LevelOne();
     }
 
     public void MainMenu() {
-        manager.NextLevel();
+        manager.MainMenu();
     }
 }

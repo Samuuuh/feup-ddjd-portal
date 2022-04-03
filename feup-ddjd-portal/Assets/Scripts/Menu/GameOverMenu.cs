@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameOverMenu : MonoBehaviour {
-    public void restartGame() {
-        // TODO: Again, a Level Manager would be nice
-        SceneManager.LoadScene("Level One");
+    [SerializeField]
+    private GameManager manager;
+
+    public void restart() {
+        manager.LevelOne();
     }
 }
