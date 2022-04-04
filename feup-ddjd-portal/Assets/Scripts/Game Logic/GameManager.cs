@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager: MonoBehaviour {
@@ -11,6 +12,7 @@ public class GameManager: MonoBehaviour {
     }
 
     public void gameEnd() {
+            _data.SetScore((int) GetComponent<ScoreTimer>().currentTime);
             SceneManager.LoadScene("Game End");
     }
 }

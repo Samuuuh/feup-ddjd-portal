@@ -3,17 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GrabController : MonoBehaviour {
-    
-    // Player properties
     public Transform grabDetect;
     public Transform boxHolder;
     public float rayDist;
 
-    // Cube properties
     private bool holding = false;
     private GameObject cube;
 
-    // // Update is called once per frame
     void Update() {
         RaycastHit2D[] grabCheckRight = Physics2D.RaycastAll(grabDetect.position, Vector2.right * transform.localScale, rayDist);
         RaycastHit2D[] grabCheckLeft = Physics2D.RaycastAll(grabDetect.position, Vector2.left * transform.localScale, rayDist);
@@ -58,10 +54,10 @@ public class GrabController : MonoBehaviour {
 
     private void DropCube(){
         cube.transform.parent = null;
+        cube.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         cube.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
         
         Weapon.canShoot = true;
         holding = false;
-
     }
 }
