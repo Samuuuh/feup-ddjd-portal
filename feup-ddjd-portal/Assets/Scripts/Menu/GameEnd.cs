@@ -2,23 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameEnd : MonoBehaviour {
-    [SerializeField]
-    private GameManager manager;
-
-    [SerializeField]
-    private Text scoreValue;
+    [SerializeField] private GameData data;
+    [SerializeField] private Text scoreValue;
 
     void Start() {
-        scoreValue.text = "Score: " + manager.GetInstance().lastLevelScore;
+        scoreValue.text = "Score: " + data.GetInstance().lastLevelScore;
     }
 
     public void Restart() {
-        manager.LevelOne();
+        SceneManager.LoadScene("Level One");
     }
 
     public void MainMenu() {
-        manager.MainMenu();
+        SceneManager.LoadScene("Main Menu");
     }
 }

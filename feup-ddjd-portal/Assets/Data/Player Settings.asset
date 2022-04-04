@@ -13,16 +13,14 @@ MonoBehaviour:
   m_Name: Player Settings
   m_EditorClassIdentifier: 
   gravityScale: 2.3
-  fallGravityMultiplier: 2
+  fallGravityMultiplier: 1.5
   frictionAmount: 1
   coyoteTime: 0.21
   movementSpeed: 9
   velocityPower: 0.96
-  acceleration: 13
+  acceleration: 10
   deceleration: -19
-  jumpForce: 20
+  jumpForce: 17.2
   jumpGround:
     serializedVersion: 2
     m_Bits: 192
-  projectileRight: {fileID: 0}
-  projectileLeft: {fileID: 0}

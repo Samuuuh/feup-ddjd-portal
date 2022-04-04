@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Button : MonoBehaviour {
-    [SerializeField] private GameEvent _buttonEvent;
+    public int id;
+
+    [SerializeField] private GameEventButton _buttonEvent;
     [SerializeField] private Animator _buttonAnimator;
     private HashSet<GameObject> _elements = new HashSet<GameObject>();
 
     void OnTriggerExit2D(Collider2D col) {
         if(_elements.Count == 1) {
-            _buttonEvent?.Invoke();
+            _buttonEvent?.Invoke(id);
             _buttonAnimator.SetBool("isPressed", false);
         }
 
@@ -18,7 +20,7 @@ public class Button : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col) {
         if(_elements.Count == 0) {
-            _buttonEvent?.Invoke();
+            _buttonEvent?.Invoke(id);
             _buttonAnimator.SetBool("isPressed", true);
         }
 

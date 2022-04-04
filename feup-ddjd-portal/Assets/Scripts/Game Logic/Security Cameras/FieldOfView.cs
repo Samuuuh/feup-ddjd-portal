@@ -1,22 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class FieldOfView : MonoBehaviour {
-    public LayerMask playerLayer;
+    [SerializeField] private LayerMask playerLayer;
+    [SerializeField] private GameEvent _gameOver;
 
     #region Timer
     public float initialTime;
     private float currentTime;
 
-    [SerializeField] 
-    private Text countdownText;
-    private float seconds = 0f;
-    private float miliseconds = 0f;
-    private string s = "";
-    private string ms = "";
+    [SerializeField] private Text countdownText;
     #endregion
 
     #region FOV Angle
@@ -68,6 +64,61 @@ public class FieldOfView : MonoBehaviour {
         redFinal.a = 180;
         #endregion
     }
+
+    #region FOV Angle
+    private Vector3 GetVectorFromAngle(float angle){
+        float angleRad = angle * (Mathf.PI/180f);
+        return new Vector3(Mathf.Cos(angleRad),Mathf.Sin(angleRad));
+    }
+
+    private void RotateAngle(){
+        if(goingRight) {
+            if (initialAngle + rotateSpeed/10 < minAngle) initialAngle += rotateSpeed/10;
+            else if(initialAngle + rotateSpeed >= minAngle){
+                initialAngle = minAngle;
+                goingRight = false;
+            } 
+        }
+        else{
+            if (initialAngle - rotateSpeed/10 > maxAngle) initialAngle -= rotateSpeed/10;
+            else if(initialAngle - rotateSpeed <= maxAngle){
+                initialAngle = maxAngle;
+                goingRight = true; 
+            } 
+        }
+    }
+    #endregion
+
+    #region Timer
+    private void Countdown() {
+        currentTime -= Time.deltaTime;
+        if (currentTime <= 0f) _gameOver?.Invoke();
+
+        currentTime = Math.Max(currentTime, 0);
+        float seconds = Mathf.Floor(currentTime % 60);
+        float miliseconds = Mathf.Floor((currentTime % 60 - Mathf.Floor(currentTime % 60))*100);
+
+        countdownText.text = seconds.ToString("00") + ":" + miliseconds.ToString("00");
+
+        IntensifyColor();
+    }
+    #endregion
+
+    #region Renderer
+     private void MakeRed(){
+        colorRenderer.material.SetColor("_Color", redInitial);
+    }
+
+    private void MakeYellow(){
+        countdownText.text = "03:00";
+        colorRenderer.material.SetColor("_Color", yellow);
+    }
+
+    private void IntensifyColor(){
+        float lerp = Mathf.PingPong(currentTime, initialTime) / initialTime;
+        colorRenderer.material.SetColor("_Color", Color.Lerp(redFinal, redInitial, lerp));
+    }
+    #endregion
 
     void FixedUpdate() {
         Vector3 relativePositionVertex = Vector3.zero;
@@ -132,70 +183,5 @@ public class FieldOfView : MonoBehaviour {
             MakeYellow();
             currentTime = initialTime;
         }
-    }
-
-    private Vector3 GetVectorFromAngle(float angle){
-        float angleRad = angle * (Mathf.PI/180f);
-        return new Vector3(Mathf.Cos(angleRad),Mathf.Sin(angleRad));
-    }
-
-    private void RotateAngle(){
-        if(goingRight) {
-            if (initialAngle + rotateSpeed/10 < minAngle) initialAngle += rotateSpeed/10;
-            else if(initialAngle + rotateSpeed >= minAngle){
-                initialAngle = minAngle;
-                goingRight = false;
-            } 
-        }
-        else{
-            if (initialAngle - rotateSpeed/10 > maxAngle) initialAngle -= rotateSpeed/10;
-            else if(initialAngle - rotateSpeed <= maxAngle){
-                initialAngle = maxAngle;
-                goingRight = true; 
-            } 
-        }
-    }
-
-   private void Countdown(){
-        currentTime -= Time.deltaTime;
-
-        if (currentTime <= 0) SceneManager.LoadScene("Game Over");
-
-        seconds = Mathf.Floor(currentTime % 60);
-        miliseconds = Mathf.Floor((currentTime % 60 - Mathf.Floor(currentTime % 60))*100);
-
-        
-
-        if (seconds < 10) {
-            s = "0" + seconds.ToString();
-        } else {
-            s = seconds.ToString();
-        }
-
-        if(miliseconds < 10){
-            ms = "0" + miliseconds.ToString();
-        } else {
-            ms = miliseconds.ToString();
-        }
-
-        countdownText.text = s + ":" + ms;
-
-        IntensifyColor();
-    }
-
-
-    private void MakeRed(){
-        colorRenderer.material.SetColor("_Color", redInitial);
-    }
-
-    private void MakeYellow(){
-        countdownText.text = "03:00";
-        colorRenderer.material.SetColor("_Color", yellow);
-    }
-
-    private void IntensifyColor(){
-        float lerp = Mathf.PingPong(currentTime, initialTime) / initialTime;
-        colorRenderer.material.SetColor("_Color", Color.Lerp(redFinal, redInitial, lerp));
-
     }
 }

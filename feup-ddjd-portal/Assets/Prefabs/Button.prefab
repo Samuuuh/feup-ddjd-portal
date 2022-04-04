@@ -203,6 +203,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7d99cfec4a4fdb45bb3cc11be7fa488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  door: {fileID: 0}
-  displacement: 0
-  buttonAnimator: {fileID: 0}
+  id: 0
+  _buttonEvent: {fileID: 0}
+  _buttonAnimator: {fileID: 0}

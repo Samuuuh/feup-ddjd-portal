@@ -35,8 +35,10 @@ public class AudioManager: MonoBehaviour {
     }
 
     private void Update() {
-        if (!audioPlaying.isPlaying) {
-            ambientMusic.source.volume = defaultVolume;
+        if (audioPlaying != null) {
+            if (!audioPlaying.isPlaying) {
+                ambientMusic.source.volume = defaultVolume;
+            }
         }
     }
 
