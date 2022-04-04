@@ -5,26 +5,26 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ScoreTimer: MonoBehaviour {
+    public float currentTime;
+
     [SerializeField] private Text _countdownText;
-    
     [SerializeField] private float _startingTime;
-    private float _currentTime;
     
     void Start() {
-        _currentTime = _startingTime;
+        currentTime = _startingTime;
     }
 
     void Update() {
-        _currentTime -= Time.deltaTime;
+        currentTime -= Time.deltaTime;
 
-        if (_currentTime <= 300f) {
+        if (currentTime <= 300f) {
             _countdownText.color = Color.red;
         }
 
-        _currentTime = Math.Max(_currentTime, 0);
+        currentTime = Math.Max(currentTime, 0);
 
-        float minutes = Mathf.Floor(_currentTime / 60);
-        float seconds = Mathf.RoundToInt(_currentTime % 60);
+        float minutes = Mathf.Floor(currentTime / 60);
+        float seconds = Mathf.RoundToInt(currentTime % 60);
 
         _countdownText.text = minutes.ToString("00") + ":" + seconds.ToString("00");
     }

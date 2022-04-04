@@ -16,7 +16,9 @@ public class ExitDoor: MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D col) {
         if ((col.gameObject.tag == "Player")) {
             if (unlockedDoor) {
-                gameManager.SetScore(20);
+                float score = 20f;
+
+                gameManager.SetScore(score);
                 gameManager.GameEnd();
             } else {
                 if (!alreadyPlayedAudio) 
