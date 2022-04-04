@@ -3,18 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MovementArea : MonoBehaviour {
-    [SerializeField]
-    private GameObject player;
-    [SerializeField]
-    private GameObject patrol;
+    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject patrol;
     private Vector3 direction;
     private bool movingRight = true;
 
-    [SerializeField]
-    private float speed = 2f;
+    [SerializeField] private float speed = 2f;
 
-    [SerializeField]
-    private GameObject collisionArea;
+    [SerializeField] private GameObject collisionArea;
     
     private float rightEdge;
     private float leftEdge;

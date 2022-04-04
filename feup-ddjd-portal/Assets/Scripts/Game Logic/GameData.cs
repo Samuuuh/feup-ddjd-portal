@@ -7,8 +7,6 @@ using UnityEngine.SceneManagement;
 public class GameData: ScriptableObject {
     public class Settings : ScriptableObject {
         private static Settings _instance;
-
-        public float currentLevel;
         public float lastLevelScore;
         
         public static Settings GetInstance() {
@@ -31,10 +29,6 @@ public class GameData: ScriptableObject {
     #region Global Attributes
     public void SetScore(float value) {
         Settings.GetInstance().lastLevelScore = value;
-    }
-
-    public void SetCurrentLevel(float value) {
-        Settings.GetInstance().currentLevel = value;
     }
     #endregion
 }

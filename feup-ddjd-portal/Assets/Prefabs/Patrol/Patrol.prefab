@@ -97,8 +97,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   patrol: {fileID: 5863280332768820615}
-  collisionArea: {fileID: 5863280332708482202}
   speed: 2
+  collisionArea: {fileID: 5863280332708482202}
 --- !u!1 &5863280332708482202
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,7 +192,6 @@ GameObject:
   - component: {fileID: 5863280332768820346}
   - component: {fileID: 5863280332768820347}
   - component: {fileID: 5863280332768820344}
-  - component: {fileID: 5863280332768820345}
   - component: {fileID: 5863280332768820614}
   m_Layer: 0
   m_Name: Patrol
@@ -289,22 +288,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &5863280332768820345
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5863280332768820615}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!114 &5863280332768820614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,3 +300,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21a589f27b66d92479aa7e26cbe0e043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameOver: {fileID: 0}
