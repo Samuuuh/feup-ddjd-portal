@@ -7,7 +7,7 @@ public class PlayOnPlayerCollider : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col) {
         if (col.tag == "Player") {
-            FindObjectOfType<AudioManager>().Play(soundName);
+            FindObjectOfType<AudioManager>()?.Play(soundName);
             Destroy(gameObject);
         }
     }

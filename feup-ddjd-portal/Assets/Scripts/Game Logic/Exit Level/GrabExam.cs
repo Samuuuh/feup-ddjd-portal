@@ -9,7 +9,7 @@ public class GrabExam : MonoBehaviour {
         if (col.gameObject.tag == "Player") {
             _onUnlockDoor?.Invoke();
 
-            FindObjectOfType<AudioManager>().Play("GladosFindExit");
+            FindObjectOfType<AudioManager>()?.Play("GladosFindExit");
             Destroy(gameObject);
         }
     }

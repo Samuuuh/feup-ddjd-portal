@@ -20,7 +20,7 @@ public class ExitDoor: MonoBehaviour {
                 gameManager.GameEnd();
             } else {
                 if (!alreadyPlayedAudio) 
-                    FindObjectOfType<AudioManager>().Play("GladosDontExit");
+                    FindObjectOfType<AudioManager>()?.Play("GladosDontExit");
     
                 alreadyPlayedAudio = true;
             }
