@@ -44,6 +44,8 @@ public class Portal : MonoBehaviour {
 
             if (isOrange) {
                 GameObject bluePortal = GameObject.FindGameObjectWithTag("Blue Portal");
+                if (bluePortal == null) return;
+
                 bluePortal.GetComponent<Portal>().DisablePortal();
 
                 destination = bluePortal.GetComponent<Transform>();
@@ -61,6 +63,8 @@ public class Portal : MonoBehaviour {
                 }
            }  else {
                GameObject orangePortal = GameObject.FindGameObjectWithTag("Orange Portal");
+               if (orangePortal == null) return;
+
                orangePortal.GetComponent<Portal>().DisablePortal();
 
                destination = orangePortal.GetComponent<Transform>();
