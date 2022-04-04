@@ -3,28 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ExitDoor: MonoBehaviour {
-    [SerializeField] private GameManager gameManager;
+    [SerializeField] private GameEvent _gameEnd;
 
-    private bool unlockedDoor = false;
-    private bool alreadyPlayedAudio = false;
+    private bool _unlockedDoor = false;
+    private bool _alreadyPlayedAudio = false;
 
     public void UnlockDoor() {
-        unlockedDoor = true;
+        _unlockedDoor = true;
         GetComponentInChildren<SpriteRenderer>().color = new Color(0, 1, 0, 1);
     }
 
     private void OnTriggerEnter2D(Collider2D col) {
         if ((col.gameObject.tag == "Player")) {
-            if (unlockedDoor) {
-                float score = 20f;
-
-                gameManager.SetScore(score);
-                gameManager.GameEnd();
+            if (_unlockedDoor) {
+                _gameEnd?.Invoke();
             } else {
-                if (!alreadyPlayedAudio) 
+                if (!_alreadyPlayedAudio) 
                     FindObjectOfType<AudioManager>()?.Play("GladosDontExit");
     
-                alreadyPlayedAudio = true;
+                _alreadyPlayedAudio = true;
             }
         }
     }

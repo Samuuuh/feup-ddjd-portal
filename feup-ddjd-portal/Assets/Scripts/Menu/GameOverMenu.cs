@@ -4,10 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameOverMenu : MonoBehaviour {
-    [SerializeField]
-    private GameManager manager;
-
     public void restart() {
-        manager.LevelOne();
+        SceneManager.LoadScene("Level One");
     }
 }

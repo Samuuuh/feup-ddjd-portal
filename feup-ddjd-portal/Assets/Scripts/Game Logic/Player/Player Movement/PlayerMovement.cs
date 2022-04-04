@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement: MonoBehaviour {
     [SerializeField] private PlayerData data;
+
     [HideInInspector] public bool isJumping = true;
     [HideInInspector] public bool isGrounded = false;
 
@@ -14,14 +15,14 @@ public class PlayerMovement: MonoBehaviour {
     private Rigidbody2D rigidBody;
     private BoxCollider2D playerCollider;
 
-    void Start() {
+    private void Start() {
         playerCollider = GetComponent<BoxCollider2D>();
         rigidBody = GetComponent<Rigidbody2D>();
     }
     
-    void Update() {
+    private void Update() {
         mx = Input.GetAxisRaw("Horizontal");
-
+ 
         #region Jump
         lastGroundedTime -= Time.deltaTime;
         jumpTime -= Time.deltaTime;
