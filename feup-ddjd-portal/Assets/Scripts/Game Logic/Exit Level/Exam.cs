@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrabExam : MonoBehaviour {
+public class Exam : MonoBehaviour {
     [SerializeField] private GameEvent _onUnlockDoor;
 
     void OnTriggerEnter2D(Collider2D col) {
