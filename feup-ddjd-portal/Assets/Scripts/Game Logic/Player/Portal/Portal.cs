@@ -30,10 +30,7 @@ public class Portal : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.tag == "Orange Portal") {
-            Destroy(other.gameObject);
-        }
-        else if (other.gameObject.tag == "Player" || other.gameObject.tag == "Cube") {
+        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Cube") {
             Rigidbody2D rb = other.gameObject.GetComponent<Rigidbody2D>();
 
             Transform destination;

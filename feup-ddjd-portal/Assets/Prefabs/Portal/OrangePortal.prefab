@@ -147,7 +147,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.014666975, y: 0.095335245}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -158,7 +158,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 2.5}
+  m_Size: {x: 1.029334, y: 2.9693432}
   m_EdgeRadius: 0
 --- !u!1 &3441581695770420525
 GameObject:
@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 4765029345381687105}
   - component: {fileID: 4292373641976332743}
   - component: {fileID: 1845629025001691700}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4974,7 +4974,7 @@ GameObject:
   m_Component:
   - component: {fileID: 570144352707737983}
   - component: {fileID: 6318592454743676448}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
