@@ -13,10 +13,10 @@ public class FieldOfView : MonoBehaviour {
 
     [SerializeField] 
     private Text countdownText;
-    private float minutes = 0f;
     private float seconds = 0f;
-    private string m = "";
+    private float miliseconds = 0f;
     private string s = "";
+    private string ms = "";
     #endregion
 
     #region FOV Angle
@@ -156,27 +156,29 @@ public class FieldOfView : MonoBehaviour {
         }
     }
 
-    private void Countdown(){
+   private void Countdown(){
         currentTime -= Time.deltaTime;
 
         if (currentTime <= 0) SceneManager.LoadScene("Game Over");
 
-        minutes = Mathf.Floor(currentTime / 60);
-        seconds = Mathf.RoundToInt(currentTime % 60);
+        seconds = Mathf.Floor(currentTime % 60);
+        miliseconds = Mathf.Floor((currentTime % 60 - Mathf.Floor(currentTime % 60))*100);
 
-        m = minutes.ToString();
-        if (minutes < 10) {
-            m = "0" + minutes.ToString();
-        } else {
-            m = minutes.ToString();
-        }
+        
+
         if (seconds < 10) {
             s = "0" + seconds.ToString();
         } else {
             s = seconds.ToString();
         }
 
-        countdownText.text = m + ":" + s;
+        if(miliseconds < 10){
+            ms = "0" + miliseconds.ToString();
+        } else {
+            ms = miliseconds.ToString();
+        }
+
+        countdownText.text = s + ":" + ms;
 
         IntensifyColor();
     }
@@ -187,7 +189,7 @@ public class FieldOfView : MonoBehaviour {
     }
 
     private void MakeYellow(){
-        countdownText.text = "00:03";
+        countdownText.text = "03:00";
         colorRenderer.material.SetColor("_Color", yellow);
     }
 
