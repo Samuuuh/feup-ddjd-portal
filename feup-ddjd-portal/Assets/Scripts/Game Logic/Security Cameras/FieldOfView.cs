@@ -56,7 +56,7 @@ public class FieldOfView : MonoBehaviour {
         GetComponent<MeshFilter>().mesh = mesh;
 
         colorRenderer = GetComponent<Renderer>();
-        yellow = Color.yellow;
+        yellow = Color.red;
         yellow.a = 100;
         redInitial = Color.red;
         redInitial.a = 100;
