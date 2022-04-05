@@ -46,7 +46,6 @@ GameObject:
   - component: {fileID: 3810336707507052430}
   - component: {fileID: 2944704933635992462}
   - component: {fileID: 1432166492589629326}
-  - component: {fileID: 1794216430326526185}
   - component: {fileID: 2903786050139007077}
   - component: {fileID: 6251222382608244009}
   - component: {fileID: 7686984039241839686}
@@ -203,6 +202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbb5da2216c47f474995ea670be364f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _weaponToggle: {fileID: 0}
   grabDetect: {fileID: 1741385819371993136}
   boxHolder: {fileID: 4164577348520813177}
   rayDist: 0.75
@@ -234,22 +234,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   facingRight: 1
---- !u!114 &1794216430326526185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2473885974495333979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 476ba917047a5f440840b69d296deb14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _actionGrab: {fileID: 11400000, guid: e0bd80738d849b445811d5d2b99bea75, type: 2}
-  _shotBluePortal: {fileID: 11400000, guid: 548233d530b3eea4a832f0f009576565, type: 2}
-  _shotOrangePortal: {fileID: 11400000, guid: 49f38928d80c9d24cb79d72f9c2a68fc, type: 2}
-  _jump: {fileID: 11400000, guid: 860413bb90e4e124b978270524862cb7, type: 2}
 --- !u!114 &2903786050139007077
 MonoBehaviour:
   m_ObjectHideFlags: 0

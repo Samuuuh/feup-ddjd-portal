@@ -7,6 +7,11 @@ using UnityEngine.SceneManagement;
 public class GameManager: MonoBehaviour {
     [SerializeField] private GameData _data;
 
+    public void mainMenu() {
+            Time.timeScale = 1f;
+            SceneManager.LoadScene("Main Menu");
+    }
+
     public void gameOver() {
             SceneManager.LoadScene("Game Over");
     }

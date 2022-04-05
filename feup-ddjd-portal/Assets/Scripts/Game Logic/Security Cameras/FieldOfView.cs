@@ -16,28 +16,22 @@ public class FieldOfView : MonoBehaviour {
     #endregion
 
     #region FOV Angle
-    [SerializeField]
-    private float fov = 90f;
-    [SerializeField]
-    private float maxAngle = -90;
+    [SerializeField] private float fov = 90f;
+    [SerializeField] private float maxAngle = -90;
     private float initialAngle;
     private float minAngle;
     #endregion
 
     #region FOV Settings
-    [SerializeField]
-    private float viewDistance = 5f; 
-    [SerializeField]
-    private float rotateSpeed = 5f;
-    [SerializeField]
-    private int triangleCount = 25;
+    [SerializeField] private float viewDistance = 5f; 
+    [SerializeField] private float rotateSpeed = 5f;
+    [SerializeField] private int triangleCount = 25;
     private bool goingRight = true; 
     #endregion
 
     #region Renderer
     private Mesh mesh;
     private Renderer colorRenderer;
-    private Color32 yellow;
     private Color32 redInitial, redFinal;
     #endregion
 
@@ -56,8 +50,6 @@ public class FieldOfView : MonoBehaviour {
         GetComponent<MeshFilter>().mesh = mesh;
 
         colorRenderer = GetComponent<Renderer>();
-        yellow = Color.red;
-        yellow.a = 100;
         redInitial = Color.red;
         redInitial.a = 100;
         redFinal = Color.red;
@@ -113,7 +105,7 @@ public class FieldOfView : MonoBehaviour {
         float seconds = Mathf.Floor(currentTime % 60);
         float miliseconds = Mathf.Floor((currentTime % 60 - Mathf.Floor(currentTime % 60))*100);
         countdownText.text = seconds.ToString("00") + ":" + miliseconds.ToString("00");
-        colorRenderer.material.SetColor("_Color", yellow);
+        colorRenderer.material.SetColor("_Color", redInitial);
     }
 
     private void IntensifyColor(){

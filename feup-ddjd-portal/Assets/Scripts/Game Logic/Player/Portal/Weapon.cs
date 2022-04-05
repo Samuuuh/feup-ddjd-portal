@@ -17,6 +17,10 @@ public class Weapon : MonoBehaviour {
     }
 
     private void Update() {
+        intervalTime -= Time.deltaTime;
+    }
+
+    private void FixedUpdate() {
         if (_canShoot) {
             Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
@@ -24,9 +28,6 @@ public class Weapon : MonoBehaviour {
         } else {
             transform.rotation = Quaternion.Euler(0f, 0f, offset);
         }
-        
-
-        intervalTime -= Time.deltaTime;
     }
 
     public void ShotBluePortal() {
