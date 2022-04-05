@@ -45,12 +45,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13d6925e060198cf8bb0fe0d091f115a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whatIsSolid:
+  playerLayer:
     serializedVersion: 2
     m_Bits: 0
-  triangleCount: 25
+  _gameOver: {fileID: 0}
+  initialTime: 0
+  countdownText: {fileID: 0}
+  fov: 90
+  maxAngle: -90
   viewDistance: 5
   rotateSpeed: 1
+  triangleCount: 25
 --- !u!33 &3799172309591817898
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -19,10 +19,12 @@ public class Projectile : MonoBehaviour {
     }
 
     private void Update() {
-        transform.Translate(Vector2.right * speed * Time.deltaTime);
+        //transform.Translate(Vector2.right * speed * Time.deltaTime);
     }
 
     private void FixedUpdate() {
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
+
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, transform.up, 0, whatIsSolid);
 
         if (hitInfo.collider != null) {
