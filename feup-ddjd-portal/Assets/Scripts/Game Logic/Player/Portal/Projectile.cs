@@ -13,6 +13,7 @@ public class Projectile : MonoBehaviour {
 
     private float bottomEdge, topEdge, rightEdge, leftEdge;
     private Vector3 wallCenter; 
+    private int wallID;
 
     void Start() {
         startPosition = transform.position;
@@ -98,6 +99,7 @@ public class Projectile : MonoBehaviour {
     }
 
     void GetWallEdges(GameObject wall){
+        wallID = wall.GetInstanceID();
         float wallWidth = wall.transform.lossyScale.x;
         float wallHeight =  wall.transform.lossyScale.y;
 
@@ -106,6 +108,9 @@ public class Projectile : MonoBehaviour {
 
         leftEdge = wall.transform.position.x - wallWidth/2 - 0.25f;
         rightEdge = wall.transform.position.x + wallWidth/2 + 0.25f;
+
+
+        
     }
 
     // Override the previous portal if it is too close
@@ -120,10 +125,10 @@ public class Projectile : MonoBehaviour {
         if(portal != null){
             Vector3 portalPosition = portal.transform.position;
 
-            if(type == "vertical" && Mathf.Abs(portalPosition.y - position.y) < 1.75f && Vector3.Distance(portalPosition,position) < 2f){
+            if(type == "vertical" && Mathf.Abs(portalPosition.y - position.y) < 1.75f && portalPosition.x == position.x){
                 Destroy(portal);
             }
-            else if(type == "horizontal" && !portal.GetComponent<Portal>().isVertical && Vector3.Distance(portalPosition,position) < 2f){
+            else if(type == "horizontal" && Mathf.Abs(portalPosition.x - position.x) < 1.75f && portalPosition.y == position.y){
                 Destroy(portal);
             }
 
