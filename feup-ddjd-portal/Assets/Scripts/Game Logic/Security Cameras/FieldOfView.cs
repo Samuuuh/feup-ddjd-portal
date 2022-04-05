@@ -110,7 +110,9 @@ public class FieldOfView : MonoBehaviour {
     }
 
     private void MakeYellow(){
-        countdownText.text = "03:00";
+        float seconds = Mathf.Floor(currentTime % 60);
+        float miliseconds = Mathf.Floor((currentTime % 60 - Mathf.Floor(currentTime % 60))*100);
+        countdownText.text = seconds.ToString("00") + ":" + miliseconds.ToString("00");
         colorRenderer.material.SetColor("_Color", yellow);
     }
 
