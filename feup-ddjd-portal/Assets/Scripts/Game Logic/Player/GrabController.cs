@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GrabController : MonoBehaviour {
     public Transform grabDetect;
@@ -11,8 +12,17 @@ public class GrabController : MonoBehaviour {
     private GameObject cube;
 
     void Update() {
-        RaycastHit2D[] grabCheckRight = Physics2D.RaycastAll(grabDetect.position, Vector2.right * transform.localScale, rayDist);
-        RaycastHit2D[] grabCheckLeft = Physics2D.RaycastAll(grabDetect.position, Vector2.left * transform.localScale, rayDist);
+
+        
+        RaycastHit2D[] grabRight1 = Physics2D.RaycastAll(grabDetect.position, Vector2.right * transform.localScale, rayDist);
+        RaycastHit2D[] grabRight2 = Physics2D.RaycastAll(grabDetect.position + new Vector3(0,1f,0), Vector2.right * transform.localScale, rayDist);
+        RaycastHit2D[] grabRight3 = Physics2D.RaycastAll(grabDetect.position - new Vector3(0,1f,0), Vector2.right * transform.localScale, rayDist);
+        RaycastHit2D[] grabCheckRight = ConcatArray(ConcatArray(grabRight1,grabRight2),grabRight3);
+
+        RaycastHit2D[] grabLeft1 = Physics2D.RaycastAll(grabDetect.position, Vector2.left * transform.localScale, rayDist);
+        RaycastHit2D[] grabLeft2 = Physics2D.RaycastAll(grabDetect.position + new Vector3(0,1f,0), Vector2.left * transform.localScale, rayDist);
+        RaycastHit2D[] grabLeft3 = Physics2D.RaycastAll(grabDetect.position - new Vector3(0,1f,0), Vector2.left * transform.localScale, rayDist);
+        RaycastHit2D[] grabCheckLeft = ConcatArray(ConcatArray(grabLeft1,grabLeft2),grabLeft3);
 
         if(Input.GetKeyDown(KeyCode.E)){
             if(!holding){
@@ -59,5 +69,15 @@ public class GrabController : MonoBehaviour {
         
         Weapon.canShoot = true;
         holding = false;
+    }
+
+
+    private RaycastHit2D[] ConcatArray(RaycastHit2D[] front, RaycastHit2D[] back){
+
+        RaycastHit2D[] combined = new RaycastHit2D[front.Length + back.Length];
+        Array.Copy(front, combined, front.Length);
+        Array.Copy(back, 0, combined, front.Length, back.Length);
+
+        return combined;
     }
 }
