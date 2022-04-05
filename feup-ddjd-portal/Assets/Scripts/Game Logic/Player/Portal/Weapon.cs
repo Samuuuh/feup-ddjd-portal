@@ -17,9 +17,14 @@ public class Weapon : MonoBehaviour {
     }
 
     private void Update() {
-        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);
+        if (_canShoot) {
+            Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);
+        } else {
+            transform.rotation = Quaternion.Euler(0f, 0f, offset);
+        }
+        
 
         intervalTime -= Time.deltaTime;
     }

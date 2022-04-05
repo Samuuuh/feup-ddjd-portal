@@ -18,10 +18,6 @@ public class GrabController : MonoBehaviour {
     
     private void Update() {
         if (holding) {
-            Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-            float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-            cube.transform.rotation = Quaternion.Euler(0f, 0f, rotZ + 5);
-
             cube.transform.position = boxHolder.position;
         }
     }
