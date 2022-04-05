@@ -29,7 +29,7 @@ public class Portal : MonoBehaviour {
         isActive = false;
     }
 
-    void OnTriggerEnter2D(Collider2D other) {
+    void OnTriggerStay2D(Collider2D other) {
         if (other.gameObject.tag == "Player" || other.gameObject.tag == "Cube") {
             Rigidbody2D rb = other.gameObject.GetComponent<Rigidbody2D>();
 
@@ -52,19 +52,19 @@ public class Portal : MonoBehaviour {
                     newVelocity = new Vector2(-Mathf.Abs(rb.velocity.y) * displacementPortal/1.5f, 0);
                 } else {
                     newPosition = new Vector2(destination.position.x, destination.position.y - displacementPortal);
-                     if (bluePortal.GetComponent<Portal>().displacement < 0f) {
+                        if (bluePortal.GetComponent<Portal>().displacement < 0f) {
                         newVelocity = new Vector2(0, Mathf.Abs(rb.velocity.y*1.15f));
                     } else {
                         newVelocity = new Vector2(0, -Mathf.Abs(rb.velocity.y));
                     }
                 }
-           }  else {
-               GameObject orangePortal = GameObject.FindGameObjectWithTag("Orange Portal");
-               if (orangePortal == null) return;
+            }  else {
+                GameObject orangePortal = GameObject.FindGameObjectWithTag("Orange Portal");
+                if (orangePortal == null) return;
 
-               orangePortal.GetComponent<Portal>().DisablePortal();
+                orangePortal.GetComponent<Portal>().DisablePortal();
 
-               destination = orangePortal.GetComponent<Transform>();
+                destination = orangePortal.GetComponent<Transform>();
                 displacementPortal = orangePortal.GetComponent<Portal>().displacement;
 
                 if (orangePortal.GetComponent<Portal>().isVertical) {

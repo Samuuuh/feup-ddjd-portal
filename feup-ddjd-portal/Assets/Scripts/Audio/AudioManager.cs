@@ -12,11 +12,13 @@ public class AudioManager: MonoBehaviour {
 
     private AudioSource audioPlaying;
     private float defaultVolume;
+    private float defaultAmbient;
     private float lowerVolume;
 
     private void Awake() {
         defaultVolume = audioSettings.GetInstance().volume;
-        lowerVolume = defaultVolume - defaultVolume * (2f/3f);
+        defaultAmbient = defaultVolume - defaultVolume * (2f/3f);
+        lowerVolume = defaultVolume - defaultVolume * (3f/4f);
 
         foreach (Sound s in sounds) {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -27,7 +29,7 @@ public class AudioManager: MonoBehaviour {
 
         if (ambientMusicOn) {
             ambientMusic.source = gameObject.AddComponent<AudioSource>();
-            ambientMusic.source.volume = defaultVolume;
+            ambientMusic.source.volume = defaultAmbient;
             ambientMusic.source.clip = ambientMusic.clip;
             ambientMusic.source.loop = true;
             ambientMusic.source.Play();
@@ -37,7 +39,7 @@ public class AudioManager: MonoBehaviour {
     private void Update() {
         if (audioPlaying != null) {
             if (!audioPlaying.isPlaying) {
-                ambientMusic.source.volume = defaultVolume;
+                ambientMusic.source.volume = defaultAmbient;
             }
         }
     }
