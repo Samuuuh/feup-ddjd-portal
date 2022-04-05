@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 1794216430326526185}
   - component: {fileID: 2903786050139007077}
   - component: {fileID: 6251222382608244009}
+  - component: {fileID: 7686984039241839686}
   m_Layer: 1
   m_Name: Player
   m_TagString: Player
@@ -89,10 +90,10 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -112,7 +113,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 38092d2fb24803a449889c0a083ab837, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -133,7 +134,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2473885974495333979}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 5b7632f4fc07a254aa95395190a672cd, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -166,9 +167,9 @@ Rigidbody2D:
   m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 3
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
+  m_Material: {fileID: 6200000, guid: 5b7632f4fc07a254aa95395190a672cd, type: 2}
+  m_Interpolate: 2
+  m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!95 &2473885974495333976
@@ -245,10 +246,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 476ba917047a5f440840b69d296deb14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _actionGrab: {fileID: 0}
-  _shotBluePortal: {fileID: 0}
-  _shotOrangePortal: {fileID: 0}
-  _jump: {fileID: 0}
+  _actionGrab: {fileID: 11400000, guid: e0bd80738d849b445811d5d2b99bea75, type: 2}
+  _shotBluePortal: {fileID: 11400000, guid: 548233d530b3eea4a832f0f009576565, type: 2}
+  _shotOrangePortal: {fileID: 11400000, guid: 49f38928d80c9d24cb79d72f9c2a68fc, type: 2}
+  _jump: {fileID: 11400000, guid: 860413bb90e4e124b978270524862cb7, type: 2}
 --- !u!114 &2903786050139007077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,10 +262,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0650da0ea0f7ee64fae9d380a41277ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameEvent: {fileID: 0}
+  _gameEvent: {fileID: 11400000, guid: 860413bb90e4e124b978270524862cb7, type: 2}
   _unityEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2944704933635992462}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: Jump
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6251222382608244009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,6 +305,34 @@ MonoBehaviour:
   m_ShapePathHash: 1055983343
   m_Mesh: {fileID: 0}
   m_InstanceId: 30052
+--- !u!114 &7686984039241839686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2473885974495333979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0650da0ea0f7ee64fae9d380a41277ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEvent: {fileID: 11400000, guid: e0bd80738d849b445811d5d2b99bea75, type: 2}
+  _unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3810336707507052430}
+        m_TargetAssemblyTypeName: GrabController, Assembly-CSharp
+        m_MethodName: Action
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2473885974529676203
 GameObject:
   m_ObjectHideFlags: 0

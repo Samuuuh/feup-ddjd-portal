@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour {
-
     public bool isOrange;
     public float speed;
     public LayerMask whatIsSolid;
@@ -66,7 +65,6 @@ public class Projectile : MonoBehaviour {
         }
 
        Vector3 pos = new Vector3(transform.position.x,transform.position.y,0);
-
         if(type == "horizontal"){
             if (pos.x - 1.55f < leftEdge){
                 pos.x = leftEdge + 1.55f;
@@ -108,14 +106,10 @@ public class Projectile : MonoBehaviour {
 
         leftEdge = wall.transform.position.x - wallWidth/2 - 0.25f;
         rightEdge = wall.transform.position.x + wallWidth/2 + 0.25f;
-
-
-        
     }
 
     // Override the previous portal if it is too close
     void PortalsTooClose(Vector3 position, string type){
-
         GameObject portal = null;
 
         if(isOrange) portal = GameObject.FindGameObjectWithTag("Blue Portal");
