@@ -118,14 +118,14 @@ public class Projectile : MonoBehaviour {
         if(isOrange) portal = GameObject.FindGameObjectWithTag("Blue Portal");
         else if(!isOrange) portal = GameObject.FindGameObjectWithTag("Orange Portal");
 
-        // GameObject orange = GameObject.FindGameObjectWithTag("Orange Portal");
+        
         if(portal != null){
             Vector3 portalPosition = portal.transform.position;
 
-            if(type == "vertical" && Mathf.Abs(portalPosition.y - position.y) < 1.75f){
+            if(type == "vertical" && portal.GetComponent<Portal>().isVertical && Mathf.Abs(portalPosition.y - position.y) < 1.75f){
                 Destroy(portal);
             }
-            else if(type == "horizontal" && Mathf.Abs(portalPosition.x - position.x) < 1.75f){
+            else if(type == "horizontal" && !portal.GetComponent<Portal>().isVertical && Mathf.Abs(portalPosition.x - position.x) < 1.75f){
                 Destroy(portal);
             }
 
