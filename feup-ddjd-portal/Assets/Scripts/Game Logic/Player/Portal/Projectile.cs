@@ -66,14 +66,8 @@ public class Projectile : MonoBehaviour {
 
        Vector3 pos = new Vector3(transform.position.x,transform.position.y,0);
 
-       Debug.Log("Direction= " + type);
-       Debug.Log("Left Edge= " + leftEdge);
-       Debug.Log("Right Edge= " + rightEdge);
-
-       Debug.Log("Transform position =" + pos);
         if(type == "horizontal"){
             if (pos.x - 1.55f < leftEdge){
-                Debug.Log("Here");
                 pos.x = leftEdge + 1.55f;
             }
             else if (pos.x + 1.55f > rightEdge){
@@ -93,16 +87,7 @@ public class Projectile : MonoBehaviour {
             pos.x = relativePosition;
         }
 
-        // if(!PortalsTooClose(pos,type)){
-        //     GameObject newPortal = Instantiate(portalEffect, pos, value);
-        //     newPortal.GetComponent<Portal>().displacement = displacement;
-        //     if (type == "vertical") { newPortal.GetComponent<Portal>().isVertical = true; } 
-        //     else { newPortal.GetComponent<Portal>().isVertical = false; }
-        // }
-
-        
-        Debug.Log("Pos =" + pos);
-
+        PortalsTooClose(pos,type);
 
         GameObject newPortal = Instantiate(portalEffect, pos, value);
         newPortal.GetComponent<Portal>().displacement = displacement;
@@ -126,7 +111,7 @@ public class Projectile : MonoBehaviour {
         rightEdge = wall.transform.position.x + wallWidth/2 + 0.25f;
     }
 
-    bool PortalsTooClose(Vector3 position, string type){
+    void PortalsTooClose(Vector3 position, string type){
 
         GameObject portal = null;
 
@@ -138,17 +123,13 @@ public class Projectile : MonoBehaviour {
             Vector3 portalPosition = portal.transform.position;
 
             if(type == "vertical" && Mathf.Abs(portalPosition.y - position.y) < 1.75f){
-                return true;
+                Destroy(portal);
             }
             else if(type == "horizontal" && Mathf.Abs(portalPosition.x - position.x) < 1.75f){
-                return true;
+                Destroy(portal);
             }
 
-        }
-
-        return false;
-        
-
+        }        
         
     }
 }
