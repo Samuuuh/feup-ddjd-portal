@@ -64,32 +64,37 @@ public class Projectile : MonoBehaviour {
             }
         }
 
-       Vector3 pos = transform.position;
+       Vector3 pos = new Vector3(transform.position.x,transform.position.y,0);
+
         if(type == "horizontal"){
-            if (transform.position.x < leftEdge){
-                pos.x = leftEdge;
+            if (pos.x - 1.55f < leftEdge){
+                pos.x = leftEdge + 1.55f;
             }
-            else if (transform.position.x > rightEdge){
-                pos.x = rightEdge;
+            else if (pos.x + 1.55f > rightEdge){
+                pos.x = rightEdge - 1.55f;
             }
 
             pos.y =  relativePosition;
         }
         else if(type =="vertical"){
-            if (transform.position.y > topEdge){
-                pos.y = topEdge;
+            if (pos.y + 1.55f > topEdge){
+                pos.y = topEdge - 1.55f;
             }
-            else if (transform.position.y < bottomEdge){
-                pos.y = bottomEdge;
+            else if (pos.y - 1.55f < bottomEdge){
+                pos.y = bottomEdge + 1.55f;
             }
 
             pos.x = relativePosition;
         }
 
-       GameObject newPortal = Instantiate(portalEffect, pos, value);
-       newPortal.GetComponent<Portal>().displacement = displacement;
-       if (type == "vertical") { newPortal.GetComponent<Portal>().isVertical = true; } 
-       else { newPortal.GetComponent<Portal>().isVertical = false; }
+        PortalsTooClose(pos,type);
+
+        GameObject newPortal = Instantiate(portalEffect, pos, value);
+        newPortal.GetComponent<Portal>().displacement = displacement;
+        if (type == "vertical") { newPortal.GetComponent<Portal>().isVertical = true; } 
+        else { newPortal.GetComponent<Portal>().isVertical = false; }
+
+        
 
         Destroy(gameObject);
     }
@@ -104,5 +109,27 @@ public class Projectile : MonoBehaviour {
 
         leftEdge = wall.transform.position.x - wallWidth/2 - 0.25f;
         rightEdge = wall.transform.position.x + wallWidth/2 + 0.25f;
+    }
+
+    void PortalsTooClose(Vector3 position, string type){
+
+        GameObject portal = null;
+
+        if(isOrange) portal = GameObject.FindGameObjectWithTag("Blue Portal");
+        else if(!isOrange) portal = GameObject.FindGameObjectWithTag("Orange Portal");
+
+        // GameObject orange = GameObject.FindGameObjectWithTag("Orange Portal");
+        if(portal != null){
+            Vector3 portalPosition = portal.transform.position;
+
+            if(type == "vertical" && Mathf.Abs(portalPosition.y - position.y) < 1.75f){
+                Destroy(portal);
+            }
+            else if(type == "horizontal" && Mathf.Abs(portalPosition.x - position.x) < 1.75f){
+                Destroy(portal);
+            }
+
+        }        
+        
     }
 }
