@@ -32,16 +32,10 @@ public class PlayerMovement: MonoBehaviour {
             isJumping = false;
             lastGroundedTime = data.coyoteTime;
         }
-
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            if (lastGroundedTime > 0f && !isJumping) {
-			    Jump();
-            }
-        }
         #endregion
     }
 
-    void FixedUpdate() {
+    private void FixedUpdate() {
         #region Run
         float targetSpeed = mx * data.movementSpeed;
         float speedDiff = targetSpeed - rigidBody.velocity.x;
@@ -71,11 +65,13 @@ public class PlayerMovement: MonoBehaviour {
         #endregion
     }
 
-    private void Jump() {
-        lastGroundedTime = 0f;
-        jumpTime = 0.5f;
+    public void Jump() {
+        if (lastGroundedTime > 0f && !isJumping) {
+            lastGroundedTime = 0f;
+            jumpTime = 0.5f;
 
-        isJumping = true;
-        rigidBody.AddForce(Vector2.up * data.jumpForce, ForceMode2D.Impulse);
+            isJumping = true;
+            rigidBody.AddForce(Vector2.up * data.jumpForce, ForceMode2D.Impulse);
+        }
     }
 }

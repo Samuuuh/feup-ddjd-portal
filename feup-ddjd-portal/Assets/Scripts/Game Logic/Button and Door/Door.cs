@@ -32,6 +32,7 @@ public class Door : MonoBehaviour {
 
     public void DoorEvent(int listeningId) {
         if (id == listeningId) {
+            Debug.Log("here");
             _isOpen = !_isOpen;
         } 
     }

@@ -16,6 +16,7 @@ public class Button : MonoBehaviour {
         }
 
         _elements.Remove(col.gameObject);
+        Debug.Log(_elements);
     }
 
     void OnTriggerEnter2D(Collider2D col) {
