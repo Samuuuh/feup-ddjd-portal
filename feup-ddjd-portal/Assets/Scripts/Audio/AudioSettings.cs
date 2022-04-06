@@ -28,4 +28,8 @@ public class AudioSettings: ScriptableObject {
     public Settings GetInstance() {
         return Settings.GetInstance(initialVolume);
     }
+
+    public void SetVolume(float newVolume) {
+        Settings.GetInstance(initialVolume).volume = newVolume;
+    }
 }

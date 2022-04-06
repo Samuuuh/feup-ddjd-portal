@@ -37,6 +37,11 @@ public class AudioManager: MonoBehaviour {
     }
 
     private void Update() {
+        defaultVolume = audioSettings.GetInstance().volume;
+        defaultAmbient = defaultVolume - defaultVolume * (2f/3f);
+        lowerVolume = defaultVolume - defaultVolume * (3f/4f);
+
+        ambientMusic.source.volume = defaultAmbient;
         if (audioPlaying != null) {
             if (!audioPlaying.isPlaying) {
                 ambientMusic.source.volume = defaultAmbient;
