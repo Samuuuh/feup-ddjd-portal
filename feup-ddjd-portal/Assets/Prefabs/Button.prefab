@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6855189401386693506}
   - component: {fileID: 6855189401386693507}
-  - component: {fileID: 6855189401386693532}
   m_Layer: 6
   m_Name: Ground
   m_TagString: Ground
@@ -48,34 +47,11 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -1.9286908, y: -1.4182817}
-  - {x: -0.8853013, y: -0.7283778}
-  - {x: 0.9840222, y: -0.7258381}
-  - {x: 1.8935338, y: -1.403856}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
---- !u!68 &6855189401386693532
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6855189401386693505}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 3c6c88e7eb536cc43aa892458149118e, type: 2}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -2.1103058, y: -1.3419214}
-  - {x: -1.2763126, y: -0.20158282}
-  - {x: 1.4324462, y: -0.180103}
-  - {x: 2.3064327, y: -1.331599}
+  - {x: -1.8804249, y: -1.402193}
+  - {x: -1.0622765, y: -0.63184524}
+  - {x: 1.0644654, y: -0.6132168}
+  - {x: 1.7511091, y: -1.1397526}
+  - {x: 2.1187727, y: -1.3716786}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -92,6 +68,7 @@ GameObject:
   - component: {fileID: 6855189401936777520}
   - component: {fileID: 6855189401936777527}
   - component: {fileID: 6855189401936777522}
+  - component: {fileID: 45761980977228787}
   m_Layer: 6
   m_Name: Button
   m_TagString: Ground
@@ -178,7 +155,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.023663461, y: -0.8854367}
+  m_Offset: {x: -0.02366352, y: -0.59583914}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -189,7 +166,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.7816048, y: 1.1635891}
+  m_Size: {x: 2.7816048, y: 0.5843941}
   m_EdgeRadius: 0
 --- !u!114 &6855189401936777522
 MonoBehaviour:
@@ -206,3 +183,22 @@ MonoBehaviour:
   id: 0
   _buttonEvent: {fileID: 0}
   _buttonAnimator: {fileID: 0}
+--- !u!95 &45761980977228787
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6855189401936777526}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 84e46dc9b69ddf34b9a480419a8a1f01, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

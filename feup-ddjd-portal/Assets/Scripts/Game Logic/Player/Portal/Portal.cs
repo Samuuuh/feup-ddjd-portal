@@ -10,13 +10,13 @@ public class Portal : MonoBehaviour {
     public float displacement;
 
     public bool isActive = true;
-    private float timeDisabled = 0.3f;
+    private float timeDisabled = 0.1f;
     
     void Update() {
         if (timeDisabled < 0) {
             GetComponent<Collider2D>().enabled = true;
             isActive = true;
-            timeDisabled = 0.3f;
+            timeDisabled = 0.1f;
         }
 
         if (!isActive) {
@@ -43,26 +43,24 @@ public class Portal : MonoBehaviour {
                 GameObject bluePortal = GameObject.FindGameObjectWithTag("Blue Portal");
                 if (bluePortal == null) return;
 
-                bluePortal.GetComponent<Portal>().DisablePortal();
-
                 destination = bluePortal.GetComponent<Transform>();
                 displacementPortal = bluePortal.GetComponent<Portal>().displacement;
                 if (bluePortal.GetComponent<Portal>().isVertical) {
-                    newPosition = new Vector2(destination.position.x - displacementPortal, destination.position.y);
+                    newPosition = new Vector2(destination.position.x - (displacementPortal* 1.5f), destination.position.y);
                     newVelocity = new Vector2(-Mathf.Abs(rb.velocity.y) * displacementPortal/1.5f, 0);
                 } else {
-                    newPosition = new Vector2(destination.position.x, destination.position.y - displacementPortal);
-                        if (bluePortal.GetComponent<Portal>().displacement < 0f) {
+                    newPosition = new Vector2(destination.position.x, destination.position.y - (displacementPortal* 1.5f));
+                    if (bluePortal.GetComponent<Portal>().displacement < 0f) {
                         newVelocity = new Vector2(0, Mathf.Abs(rb.velocity.y*1.15f));
                     } else {
                         newVelocity = new Vector2(0, -Mathf.Abs(rb.velocity.y));
                     }
                 }
+
+                bluePortal.GetComponent<Portal>().DisablePortal();
             }  else {
                 GameObject orangePortal = GameObject.FindGameObjectWithTag("Orange Portal");
                 if (orangePortal == null) return;
-
-                orangePortal.GetComponent<Portal>().DisablePortal();
 
                 destination = orangePortal.GetComponent<Transform>();
                 displacementPortal = orangePortal.GetComponent<Portal>().displacement;
@@ -79,14 +77,14 @@ public class Portal : MonoBehaviour {
                         newVelocity = new Vector2(0, -Mathf.Abs(rb.velocity.y));
                     }
                 }
+
+                orangePortal.GetComponent<Portal>().DisablePortal();
             }
 
-            if (Vector2.Distance(transform.position, other.transform.position) > distance) {
-                other.transform.position = newPosition;
+            other.transform.position = newPosition;
 
-                if ( newVelocity.y != 0 ||  newVelocity.x != 0) {
-                    rb.velocity = newVelocity;
-                }
+            if ( newVelocity.y != 0 ||  newVelocity.x != 0) {
+                rb.velocity = newVelocity;
             }
         } 
     }

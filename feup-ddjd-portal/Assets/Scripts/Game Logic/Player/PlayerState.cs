@@ -16,26 +16,32 @@ public class PlayerState : MonoBehaviour {
     }
 
     void Update() {
+        float mx = Input.GetAxisRaw("Horizontal");
+
         if (playerMovement.isJumping) {
             animator.SetFloat("Jump", 1.0f);
         } else {
             animator.SetFloat("Jump", 0.0f);
         }
 
-        if (rigidBody.velocity.x < -0.01f) {
-            if (facingRight) {
-                transform.eulerAngles = new Vector2(0, 180);
-                FlipPlayer();
-            }
+        if (mx != 0) {
+            if (rigidBody.velocity.x < -0.01f) {
+                if (facingRight) {
+                    transform.eulerAngles = new Vector2(0, 180);
+                    FlipPlayer();
+                }
 
-            animator.SetFloat("Speed", 1.0f);
-        } else if (rigidBody.velocity.x > 0.01f) {
-            if (!facingRight) {
-                transform.eulerAngles = new Vector2(0, 0);
-                FlipPlayer();
-            }
+                animator.SetFloat("Speed", 1.0f);
+            } else if (rigidBody.velocity.x > 0.01f) {
+                if (!facingRight) {
+                    transform.eulerAngles = new Vector2(0, 0);
+                    FlipPlayer();
+                }
 
-            animator.SetFloat("Speed", 1.0f);
+                animator.SetFloat("Speed", 1.0f);
+            }  else {
+                animator.SetFloat("Speed", 0.0f);
+            }
         } else {
             animator.SetFloat("Speed", 0.0f);
         }

@@ -20,7 +20,7 @@ MonoBehaviour:
   velocityPower: 0.96
   acceleration: 10
   deceleration: -19
-  jumpForce: 21
+  jumpForce: 23
   jumpGround:
     serializedVersion: 2
     m_Bits: 192

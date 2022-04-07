@@ -31,6 +31,10 @@ public class PlayerMovement: MonoBehaviour {
         if (raycastHit2d.collider != null && jumpTime < 0f) {
             isJumping = false;
             lastGroundedTime = data.coyoteTime;
+        } else if (rigidBody.velocity.y < 0f) {
+            isJumping = true;
+            jumpTime = 0f;
+            lastGroundedTime = 0f;
         }
         #endregion
     }
