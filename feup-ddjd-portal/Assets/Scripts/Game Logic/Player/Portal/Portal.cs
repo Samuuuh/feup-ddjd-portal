@@ -10,13 +10,13 @@ public class Portal : MonoBehaviour {
     public float displacement;
 
     public bool isActive = true;
-    private float timeDisabled = 0.1f;
+    private float timeDisabled = 0.4f;
     
     void Update() {
         if (timeDisabled < 0) {
             GetComponent<Collider2D>().enabled = true;
             isActive = true;
-            timeDisabled = 0.1f;
+            timeDisabled = 0.4f;
         }
 
         if (!isActive) {
